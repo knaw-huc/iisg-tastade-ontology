@@ -6476,6 +6476,17 @@ This property is transitive and asymmetric.</rdfs:comment>
     
 
 
+    <!-- http://data.tastade.org/ontology/addressAsWritten -->
+
+    <owl:DatatypeProperty rdf:about="http://data.tastade.org/ontology/addressAsWritten">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <dc:creator>lilianam</dc:creator>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-09-25T14:38:00Z</dc:date>
+        <rdfs:label>address as written</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
     <!-- http://data.tastade.org/ontology/cloudFolderUrl -->
 
     <owl:DatatypeProperty rdf:about="http://data.tastade.org/ontology/cloudFolderUrl">
@@ -6856,6 +6867,16 @@ For a more complete description, objects may be decomposed into their components
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
         <rdfs:label xml:lang="en">has upper value limit</rdfs:label>
     </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#topDataProperty -->
+
+    <rdf:Description rdf:about="http://www.w3.org/2002/07/owl#topDataProperty">
+        <rdfs:domain rdf:resource="http://data.tastade.org/ontology/Residence"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment>The specific street address or location within a place, as recorded in the source. Preserved verbatim; not linked to a structured Place entity in this version.</rdfs:comment>
+    </rdf:Description>
     
 
 
@@ -7325,6 +7346,18 @@ Modeled as a subclass of E74 Group because polities are collective entities whos
         <dc:creator>lilianam</dc:creator>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-07-10T09:34:12Z</dc:date>
         <rdfs:label xml:lang="en">Relation Type</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://data.tastade.org/ontology/Residence -->
+
+    <owl:Class rdf:about="http://data.tastade.org/ontology/Residence">
+        <rdfs:subClassOf rdf:resource="http://data.tastade.org/ontology/ActorEvent"/>
+        <dc:creator>lilianam</dc:creator>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-09-25T14:21:57Z</dc:date>
+        <rdfs:comment>A period during which a person is documented as residing in a specific place. Multiple residences over time capture geographic mobility.</rdfs:comment>
+        <rdfs:label>Residence</rdfs:label>
     </owl:Class>
     
 
@@ -9255,6 +9288,21 @@ Note, that the class E9 Move inherits the property P7 took place at (witnessed):
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-08-17T12:32:35Z</dc:date>
         <rdfs:label xml:lang="en">event_crossing_34479</rdfs:label>
         <schema:sameAs rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">https://www.slavevoyages.org/voyage/34479</schema:sameAs>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://data.tastade.org/ontology/event_0011 -->
+
+    <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/event_0011">
+        <rdf:type rdf:resource="http://data.tastade.org/ontology/Residence"/>
+        <cidoc-crm:P14_carried_out_by rdf:resource="http://data.tastade.org/ontology/actor_0013"/>
+        <cidoc-crm:P4_has_time-span rdf:resource="http://data.tastade.org/ontology/timespan_0009"/>
+        <cidoc-crm:P7_took_place_at rdf:resource="http://data.tastade.org/ontology/place_0004"/>
+        <ontology:addressAsWritten xml:lang="fr">rue de Richebourg 27</ontology:addressAsWritten>
+        <dc:creator>lilianam</dc:creator>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-09-25T14:24:00Z</dc:date>
+        <rdfs:label xml:lang="en">event_residence_reneJosephSalaun</rdfs:label>
     </owl:NamedIndividual>
     
 
