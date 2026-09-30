@@ -8827,6 +8827,7 @@ Note, that the class E9 Move inherits the property P7 took place at (witnessed):
         <rdf:type rdf:resource="http://data.tastade.org/ontology/Observation"/>
         <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E21_Person"/>
         <ontology:birthDate rdf:resource="http://data.tastade.org/ontology/timespan_0003"/>
+        <ontology:birthPlace rdf:resource="http://data.tastade.org/ontology/place_0005"/>
         <ontology:hasGender rdf:resource="http://data.tastade.org/ontology/term_0002"/>
         <ontology:hasNationality rdf:resource="http://data.tastade.org/ontology/polity_0001"/>
         <cidoc-crm:P1_is_identified_by rdf:resource="http://data.tastade.org/ontology/appellation_0004"/>
@@ -8901,8 +8902,7 @@ Note, that the class E9 Move inherits the property P7 took place at (witnessed):
     <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/actor_0009">
         <rdf:type rdf:resource="http://data.tastade.org/ontology/Observation"/>
         <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E21_Person"/>
-        <ontology:birthDate rdf:resource="http://data.tastade.org/ontology/timespan_0003"/>
-        <ontology:birthPlace rdf:resource="http://data.tastade.org/ontology/place_0005"/>
+        <ontology:activePeriod rdf:resource="http://data.tastade.org/ontology/timespan_0003"/>
         <ontology:hasGender rdf:resource="http://data.tastade.org/ontology/term_0002"/>
         <cidoc-crm:P1_is_identified_by rdf:resource="http://data.tastade.org/ontology/appellation_0009"/>
         <cidoc-crm:P70i_is_documented_in rdf:resource="http://data.tastade.org/ontology/source_0005"/>
