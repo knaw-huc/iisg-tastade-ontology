@@ -12,7 +12,8 @@
      xmlns:terms="http://purl.org/dc/terms/"
      xmlns:schema="https://schema.org/"
      xmlns:ontology="http://data.tastade.org/ontology/"
-     xmlns:cidoc-crm="http://www.cidoc-crm.org/cidoc-crm/">
+     xmlns:cidoc-crm="http://www.cidoc-crm.org/cidoc-crm/"
+     xmlns:ontology1="http://data.myProject.org/ontology/">
     <owl:Ontology rdf:about="http://www.dihucknaw.org/lilianam/ontologies/tastade">
         <owl:versionIRI rdf:resource="http://www.dihucknaw.org/lilianam/ontologies/tastade/4.0.0"/>
         <owl:imports rdf:resource="http://www.w3.org/2004/02/skos/core"/>
@@ -341,6 +342,7 @@ As a result, the direct/forward property definition was used for the rdfs:commen
 
     <owl:ObjectProperty rdf:about="http://data.tastade.org/ontology/belongsToGroup">
         <rdfs:subPropertyOf rdf:resource="http://data.tastade.org/ontology/isAssociatedWithGroup"/>
+        <owl:inverseOf rdf:resource="http://data.tastade.org/ontology/hasMember"/>
         <rdfs:domain rdf:resource="http://data.tastade.org/ontology/MembershipRelationship"/>
         <rdfs:range rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E74_Group"/>
         <dc:creator>lilianam</dc:creator>
@@ -352,6 +354,19 @@ As a result, the direct/forward property definition was used for the rdfs:commen
     
 
 
+    <!-- http://data.tastade.org/ontology/belongsToOrganization -->
+
+    <owl:ObjectProperty rdf:about="http://data.tastade.org/ontology/belongsToOrganization">
+        <rdfs:subPropertyOf rdf:resource="http://data.tastade.org/ontology/belongsToGroup"/>
+        <rdfs:domain rdf:resource="http://data.tastade.org/ontology/OrganizationalMembership"/>
+        <rdfs:range rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E74_Group"/>
+        <dc:creator>lilianam</dc:creator>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-09-30T12:52:07Z</dc:date>
+        <rdfs:label>belongs to organization</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://data.tastade.org/ontology/birthDate -->
 
     <owl:ObjectProperty rdf:about="http://data.tastade.org/ontology/birthDate">
@@ -359,7 +374,7 @@ As a result, the direct/forward property definition was used for the rdfs:commen
         <rdfs:range rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E52_Time-Span"/>
         <dc:creator>lilianam</dc:creator>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-07-21T07:24:51Z</dc:date>
-        <rdfs:comment xml:lang="en">This is a Tastade-defined property to register dates of birth when they are uncertain, benefitting from CIDOC&apos;s TimeSpan class.</rdfs:comment>
+        <rdfs:comment xml:lang="en">(not for data entry, only kept to see if useful for SPARQL constructs). This is a Tastade-defined property to register dates of birth when they are uncertain, benefitting from CIDOC&apos;s TimeSpan class.</rdfs:comment>
         <rdfs:label xml:lang="en">birth date</rdfs:label>
         <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">https://schema.org/birthDate</rdfs:seeAlso>
     </owl:ObjectProperty>
@@ -373,6 +388,7 @@ As a result, the direct/forward property definition was used for the rdfs:commen
         <rdfs:range rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E53_Place"/>
         <dc:creator>lilianam</dc:creator>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-07-21T07:32:51Z</dc:date>
+        <rdfs:comment>(not for data entry, only kept to see if useful for SPARQL constructs)</rdfs:comment>
         <rdfs:label xml:lang="en">birth place</rdfs:label>
         <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">https://schema.org/birthPlace</rdfs:seeAlso>
     </owl:ObjectProperty>
@@ -383,7 +399,10 @@ As a result, the direct/forward property definition was used for the rdfs:commen
 
     <owl:ObjectProperty rdf:about="http://data.tastade.org/ontology/connectedToPolity">
         <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
-        <rdfs:domain rdf:resource="http://data.tastade.org/ontology/Polity"/>
+        <rdfs:domain rdf:resource="http://data.tastade.org/ontology/Ship"/>
+        <rdfs:domain rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E39_Actor"/>
+        <rdfs:domain rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E98_Currency"/>
+        <rdfs:range rdf:resource="http://data.tastade.org/ontology/Polity"/>
         <dc:creator>lilianam</dc:creator>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-08-18T09:58:49Z</dc:date>
         <rdfs:label xml:lang="en">connected to polity</rdfs:label>
@@ -398,6 +417,7 @@ As a result, the direct/forward property definition was used for the rdfs:commen
         <rdfs:range rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E52_Time-Span"/>
         <dc:creator>lilianam</dc:creator>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-07-21T07:27:15Z</dc:date>
+        <rdfs:comment>(not for data entry, only kept to see if useful for SPARQL constructs)</rdfs:comment>
         <rdfs:label xml:lang="en">death date</rdfs:label>
         <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">https://schema.org/deathDate</rdfs:seeAlso>
     </owl:ObjectProperty>
@@ -407,8 +427,11 @@ As a result, the direct/forward property definition was used for the rdfs:commen
     <!-- http://data.tastade.org/ontology/deathPlace -->
 
     <owl:ObjectProperty rdf:about="http://data.tastade.org/ontology/deathPlace">
+        <rdfs:domain rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E21_Person"/>
+        <rdfs:range rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E53_Place"/>
         <dc:creator>lilianam</dc:creator>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-07-21T07:35:08Z</dc:date>
+        <rdfs:comment>(not for data entry, only kept to see if useful for SPARQL constructs)</rdfs:comment>
         <rdfs:label xml:lang="en">death place</rdfs:label>
         <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">https://schema.org/deathPlace</rdfs:seeAlso>
     </owl:ObjectProperty>
@@ -418,7 +441,7 @@ As a result, the direct/forward property definition was used for the rdfs:commen
     <!-- http://data.tastade.org/ontology/employedBy -->
 
     <owl:ObjectProperty rdf:about="http://data.tastade.org/ontology/employedBy">
-        <rdfs:subPropertyOf rdf:resource="http://data.tastade.org/ontology/isAssociatedWithGroup"/>
+        <rdfs:subPropertyOf rdf:resource="http://data.tastade.org/ontology/belongsToGroup"/>
         <rdfs:domain rdf:resource="http://data.tastade.org/ontology/EmploymentRelationship"/>
         <rdfs:range rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E74_Group"/>
         <dc:creator>lilianam</dc:creator>
@@ -445,7 +468,7 @@ As a result, the direct/forward property definition was used for the rdfs:commen
     <!-- http://data.tastade.org/ontology/hasDebtor -->
 
     <owl:ObjectProperty rdf:about="http://data.tastade.org/ontology/hasDebtor">
-        <rdfs:subPropertyOf rdf:resource="http://www.cidoc-crm.org/cidoc-crm/P105_right_held_by"/>
+        <rdfs:subPropertyOf rdf:resource="http://data.tastade.org/ontology/relationFrom"/>
         <rdfs:domain rdf:resource="http://data.tastade.org/ontology/Loan"/>
         <rdfs:range rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E39_Actor"/>
         <dc:creator>lilianam</dc:creator>
@@ -487,7 +510,7 @@ As a result, the direct/forward property definition was used for the rdfs:commen
 
     <owl:ObjectProperty rdf:about="http://data.tastade.org/ontology/hasGender">
         <rdfs:domain rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E21_Person"/>
-        <rdfs:range rdf:resource="http://data.tastade.org/ontology/Gender_Type"/>
+        <rdfs:range rdf:resource="http://data.tastade.org/ontology/GenderType"/>
         <dc:creator>lilianam</dc:creator>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-07-21T09:05:32Z</dc:date>
         <rdfs:label xml:lang="en">has gender</rdfs:label>
@@ -499,6 +522,8 @@ As a result, the direct/forward property definition was used for the rdfs:commen
     <!-- http://data.tastade.org/ontology/hasIssuer -->
 
     <owl:ObjectProperty rdf:about="http://data.tastade.org/ontology/hasIssuer">
+        <rdfs:subPropertyOf rdf:resource="http://data.tastade.org/ontology/relationFrom"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.cidoc-crm.org/cidoc-crm/P105_right_held_by"/>
         <rdfs:domain rdf:resource="http://data.tastade.org/ontology/Share"/>
         <rdfs:range rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E74_Group"/>
         <dc:creator>lilianam</dc:creator>
@@ -521,6 +546,7 @@ Semantically similar to CIDOC&apos;s P105 right_held_by (Legal Object â†’ Actor 
         <rdfs:comment xml:lang="en">Links a Membership relationship to the person or actor who holds membership in the group.</rdfs:comment>
         <rdfs:label xml:lang="en">has member</rdfs:label>
         <rdfs:seeAlso>crm:P107_has_current_or_former_member</rdfs:seeAlso>
+        <skos:scopeNote>Use for the actor who has an active participation in organizing and fitting out the crossing. If an actor sells a part (interest) to another actor, only register the first one (the one who sold). The transfer is registered as a financial event.</skos:scopeNote>
     </owl:ObjectProperty>
     
 
@@ -547,6 +573,22 @@ Semantically similar to CIDOC&apos;s P105 right_held_by (Legal Object â†’ Actor 
         <dc:creator>lilianam</dc:creator>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-08-18T10:00:31Z</dc:date>
         <rdfs:label xml:lang="en">has nationality</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://data.tastade.org/ontology/hasOutfitter -->
+
+    <owl:ObjectProperty rdf:about="http://data.tastade.org/ontology/hasOutfitter">
+        <rdfs:subPropertyOf rdf:resource="http://www.cidoc-crm.org/cidoc-crm/P14_carried_out_by"/>
+        <rdfs:domain rdf:resource="http://data.tastade.org/ontology/Outfitting"/>
+        <rdfs:range rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E39_Actor"/>
+        <dc:creator>lilianam</dc:creator>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-10-01T08:33:49Z</dc:date>
+        <rdfs:comment>The person or group who carried out the outfitting of a ship for a specific crossing.</rdfs:comment>
+        <rdfs:label>has outfitter</rdfs:label>
+        <skos:altLabel xml:lang="fr">a pour armateur</skos:altLabel>
+        <skos:scopeNote>The outfitter was responsible for preparing the ship: securing capital, hiring crew, loading provisions, and arranging the crossing. Can be an individual merchant, an outfitting partnership, or a trading company.</skos:scopeNote>
     </owl:ObjectProperty>
     
 
@@ -592,6 +634,19 @@ Semantically similar to CIDOC&apos;s P105 right_held_by (Legal Object â†’ Actor 
     
 
 
+    <!-- http://data.tastade.org/ontology/hasRelationType -->
+
+    <owl:ObjectProperty rdf:about="http://data.tastade.org/ontology/hasRelationType">
+        <rdfs:domain rdf:resource="http://data.tastade.org/ontology/BinaryRelationship"/>
+        <rdfs:range rdf:resource="http://data.tastade.org/ontology/RelationType"/>
+        <dc:creator>lilianam</dc:creator>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-06-17T10:19:53Z</dc:date>
+        <rdfs:comment xml:lang="en">Links a binary relationship to a controlled vocabulary term that specifies its type.</rdfs:comment>
+        <rdfs:label xml:lang="en">has relation type</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://data.tastade.org/ontology/hasRuledPlace -->
 
     <owl:ObjectProperty rdf:about="http://data.tastade.org/ontology/hasRuledPlace">
@@ -622,7 +677,7 @@ Semantically similar to CIDOC&apos;s P105 right_held_by (Legal Object â†’ Actor 
     <!-- http://data.tastade.org/ontology/hasTransferAmount -->
 
     <owl:ObjectProperty rdf:about="http://data.tastade.org/ontology/hasTransferAmount">
-        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://data.tastade.org/ontology/hasMonetaryValue"/>
         <rdfs:domain rdf:resource="http://data.tastade.org/ontology/ShareTransfer"/>
         <rdfs:range rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E97_Monetary_Amount"/>
         <dc:creator>lilianam</dc:creator>
@@ -675,15 +730,53 @@ Semantically similar to CIDOC&apos;s P105 right_held_by (Legal Object â†’ Actor 
     
 
 
-    <!-- http://data.tastade.org/ontology/has_relation_type -->
+    <!-- http://data.tastade.org/ontology/hasUnderlying -->
 
-    <owl:ObjectProperty rdf:about="http://data.tastade.org/ontology/has_relation_type">
-        <rdfs:domain rdf:resource="http://data.tastade.org/ontology/BinaryRelationship"/>
-        <rdfs:range rdf:resource="http://data.tastade.org/ontology/RelationType"/>
+    <owl:ObjectProperty rdf:about="http://data.tastade.org/ontology/hasUnderlying">
+        <rdfs:domain rdf:resource="http://data.tastade.org/ontology/FinancialInstrument"/>
+        <rdfs:range rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity"/>
         <dc:creator>lilianam</dc:creator>
-        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-06-17T10:19:53Z</dc:date>
-        <rdfs:comment xml:lang="en">Links a binary relationship to a controlled vocabulary term that specifies its type.</rdfs:comment>
-        <rdfs:label xml:lang="en">has relation type</rdfs:label>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-10-01T11:56:29Z</dc:date>
+        <rdfs:comment>The entity or venture that this financial instrument represents a stake in, claim against, or interest in. &apos;Underlying&apos; is standard financial terminology for what gives an instrument its value or purpose.</rdfs:comment>
+        <rdfs:label>has underlying</rdfs:label>
+        <skos:scopeNote>For equity shares in a company, the underlying is the company itself 
+(an ongoing legal entity), thus, the property &quot;has issuer&quot; is enough. 
+But, for shares in a venture (synonymous with 
+&quot;crossing&quot; in this project â€” a specific maritime voyage), the 
+underlying is the crossing, which has a defined start and end tied 
+to the crossing. The issuer of the share is the outfitting partnership, and it also requires the &quot;shareInCrossing&quot; property.
+For loans, the underlying is typically the borrower, 
+sometimes with specific collateral (such as a ship in bottomry loans). 
+For derivatives, the underlying is the referenced asset. Use &quot;loanTo&quot; (the loan recipients).</skos:scopeNote>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://data.tastade.org/ontology/holdsPoliticalOfficeIn -->
+
+    <owl:ObjectProperty rdf:about="http://data.tastade.org/ontology/holdsPoliticalOfficeIn">
+        <rdfs:subPropertyOf rdf:resource="http://data.tastade.org/ontology/belongsToGroup"/>
+        <rdfs:domain rdf:resource="http://data.tastade.org/ontology/PoliticalFunction"/>
+        <rdfs:range rdf:resource="http://data.tastade.org/ontology/Polity"/>
+        <dc:creator>lilianam</dc:creator>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-10-05T12:20:59Z</dc:date>
+        <rdfs:comment>The polity in whose governmental or administrative body the actor holds a formal office.</rdfs:comment>
+        <rdfs:label>holds political office in</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://data.tastade.org/ontology/isAffiliatedWithReligiousGroup -->
+
+    <owl:ObjectProperty rdf:about="http://data.tastade.org/ontology/isAffiliatedWithReligiousGroup">
+        <rdfs:subPropertyOf rdf:resource="http://data.tastade.org/ontology/isAssociatedWithGroup"/>
+        <rdfs:domain rdf:resource="http://data.tastade.org/ontology/ReligiousAffiliation"/>
+        <rdfs:range rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E74_Group"/>
+        <dc:creator>lilianam</dc:creator>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-09-30T12:52:07Z</dc:date>
+        <rdfs:comment>Links a reified ReligiousAffiliation to the religious group (denomination, church, congregation) the person is affiliated with.</rdfs:comment>
+        <rdfs:label>is affiliated with religious group</rdfs:label>
+        <rdfs:seeAlso>pico:hasReligion</rdfs:seeAlso>
     </owl:ObjectProperty>
     
 
@@ -770,14 +863,37 @@ The isAssociatedWithGroup property connects the MEMBERSHIP RECORD to the group â
     
 
 
-    <!-- http://data.tastade.org/ontology/outfittedVessel -->
+    <!-- http://data.tastade.org/ontology/outfittedForCrossing -->
 
-    <owl:ObjectProperty rdf:about="http://data.tastade.org/ontology/outfittedVessel">
-        <rdfs:domain rdf:resource="http://data.tastade.org/ontology/OutfittingPartnership"/>
+    <owl:ObjectProperty rdf:about="http://data.tastade.org/ontology/outfittedForCrossing">
+        <rdfs:subPropertyOf rdf:resource="http://www.cidoc-crm.org/cidoc-crm/P20_had_specific_purpose"/>
+        <rdfs:domain rdf:resource="http://data.tastade.org/ontology/Outfitting"/>
+        <rdfs:range rdf:resource="http://data.tastade.org/ontology/Crossing"/>
+        <dc:creator>lilianam</dc:creator>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-08-17T08:44:57Z</dc:date>
+        <rdfs:comment>The crossing for which the ship was physically fitted out during this outfitting event.
+&apos;Fitting out&apos; or &apos;outfitting&apos; refers to the process of preparing a vessel for a specific crossing: securing capital, hiring crew, loading provisions, acquiring trade goods, and arranging insurance.</rdfs:comment>
+        <rdfs:label xml:lang="en">outfitted for crossing</rdfs:label>
+        <rdfs:seeAlso>P16_used_specific_object</rdfs:seeAlso>
+        <skos:altLabel xml:lang="fr">armÃ© pour la traversÃ©e</skos:altLabel>
+        <skos:scopeNote>Links an OutfittingEvent to its intended Crossing. 
+
+The outfitting was carried out in order to prepare for this specific crossing. Links the preparatory event (outfitting) to its intended purpose (crossing).
+
+The outfitting typically precedes the actual departure by weeks or months. If the ship was outfitted but did not complete the voyage (shipwreck, cancellation), this property still links to the intended Crossing. For multi-leg voyages (triangular trade), the outfitting event may be linked to the primary departure crossing of the venture, with additional ActorEvents or FinancialEvents capturing subsequent legs.</skos:scopeNote>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://data.tastade.org/ontology/outfittedShip -->
+
+    <owl:ObjectProperty rdf:about="http://data.tastade.org/ontology/outfittedShip">
+        <rdfs:subPropertyOf rdf:resource="http://www.cidoc-crm.org/cidoc-crm/P16_used_specific_object"/>
+        <rdfs:domain rdf:resource="http://data.tastade.org/ontology/Outfitting"/>
         <rdfs:range rdf:resource="http://data.tastade.org/ontology/Ship"/>
         <dc:creator>lilianam</dc:creator>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-08-17T08:43:22Z</dc:date>
-        <rdfs:label xml:lang="en">outfitted vessel</rdfs:label>
+        <rdfs:label xml:lang="en">outfitted ship</rdfs:label>
     </owl:ObjectProperty>
     
 
@@ -800,7 +916,7 @@ The isAssociatedWithGroup property connects the MEMBERSHIP RECORD to the group â
 
     <owl:ObjectProperty rdf:about="http://data.tastade.org/ontology/ownsEnslavedPerson">
         <rdfs:subPropertyOf rdf:resource="http://data.tastade.org/ontology/ownsEntity"/>
-        <rdfs:domain rdf:resource="http://data.tastade.org/ontology/Enslaved_Person_Ownership"/>
+        <rdfs:domain rdf:resource="http://data.tastade.org/ontology/EnslavedPersonOwnership"/>
         <rdfs:range rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E21_Person"/>
         <dc:creator>lilianam</dc:creator>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-06-07T14:43:31Z</dc:date>
@@ -826,7 +942,7 @@ The isAssociatedWithGroup property connects the MEMBERSHIP RECORD to the group â
 
     <owl:ObjectProperty rdf:about="http://data.tastade.org/ontology/ownsFinancialInstrument">
         <rdfs:subPropertyOf rdf:resource="http://data.tastade.org/ontology/ownsEntity"/>
-        <rdfs:domain rdf:resource="http://data.tastade.org/ontology/Financial_Instrument_Ownership"/>
+        <rdfs:domain rdf:resource="http://data.tastade.org/ontology/FinancialInstrumentOwnership"/>
         <rdfs:range rdf:resource="http://data.tastade.org/ontology/FinancialInstrument"/>
         <dc:creator>lilianam</dc:creator>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-08-24T14:46:59Z</dc:date>
@@ -840,7 +956,7 @@ The isAssociatedWithGroup property connects the MEMBERSHIP RECORD to the group â
 
     <owl:ObjectProperty rdf:about="http://data.tastade.org/ontology/ownsLoan">
         <rdfs:subPropertyOf rdf:resource="http://data.tastade.org/ontology/ownsFinancialInstrument"/>
-        <rdfs:domain rdf:resource="http://data.tastade.org/ontology/Loan_Ownership"/>
+        <rdfs:domain rdf:resource="http://data.tastade.org/ontology/LoanOwnership"/>
         <rdfs:range rdf:resource="http://data.tastade.org/ontology/Loan"/>
         <dc:creator>lilianam</dc:creator>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-08-17T13:57:35Z</dc:date>
@@ -854,7 +970,7 @@ The isAssociatedWithGroup property connects the MEMBERSHIP RECORD to the group â
 
     <owl:ObjectProperty rdf:about="http://data.tastade.org/ontology/ownsProperty">
         <rdfs:subPropertyOf rdf:resource="http://data.tastade.org/ontology/ownsEntity"/>
-        <rdfs:domain rdf:resource="http://data.tastade.org/ontology/Property_Ownership"/>
+        <rdfs:domain rdf:resource="http://data.tastade.org/ontology/PropertyOwnership"/>
         <rdfs:range rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E18_Physical_Thing"/>
         <dc:creator>lilianam</dc:creator>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-06-07T14:43:42Z</dc:date>
@@ -867,7 +983,7 @@ The isAssociatedWithGroup property connects the MEMBERSHIP RECORD to the group â
 
     <owl:ObjectProperty rdf:about="http://data.tastade.org/ontology/ownsShare">
         <rdfs:subPropertyOf rdf:resource="http://data.tastade.org/ontology/ownsFinancialInstrument"/>
-        <rdfs:domain rdf:resource="http://data.tastade.org/ontology/Share_Ownership"/>
+        <rdfs:domain rdf:resource="http://data.tastade.org/ontology/ShareOwnership"/>
         <rdfs:range rdf:resource="http://data.tastade.org/ontology/Share"/>
         <dc:creator>lilianam</dc:creator>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-06-07T14:41:54Z</dc:date>
@@ -943,15 +1059,30 @@ The isAssociatedWithGroup property connects the MEMBERSHIP RECORD to the group â
     
 
 
-    <!-- http://data.tastade.org/ontology/securingVoyage -->
+    <!-- http://data.tastade.org/ontology/securingCrossing -->
 
-    <owl:ObjectProperty rdf:about="http://data.tastade.org/ontology/securingVoyage">
+    <owl:ObjectProperty rdf:about="http://data.tastade.org/ontology/securingCrossing">
+        <rdfs:subPropertyOf rdf:resource="http://www.cidoc-crm.org/cidoc-crm/P20_had_specific_purpose"/>
         <rdfs:domain rdf:resource="http://data.tastade.org/ontology/BottomryLoan"/>
         <rdfs:range rdf:resource="http://data.tastade.org/ontology/Crossing"/>
         <dc:creator>lilianam</dc:creator>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-08-17T13:55:41Z</dc:date>
         <rdfs:comment>The voyage whose success triggers repayment.</rdfs:comment>
-        <rdfs:label>securing voyage</rdfs:label>
+        <rdfs:label>securing crossing</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://data.tastade.org/ontology/shareInCrossing -->
+
+    <owl:ObjectProperty rdf:about="http://data.tastade.org/ontology/shareInCrossing">
+        <rdfs:subPropertyOf rdf:resource="http://data.tastade.org/ontology/hasUnderlying"/>
+        <rdfs:domain rdf:resource="http://data.tastade.org/ontology/Share"/>
+        <rdfs:range rdf:resource="http://data.tastade.org/ontology/Crossing"/>
+        <dc:creator>lilianam</dc:creator>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-10-01T12:14:30Z</dc:date>
+        <rdfs:comment>Links a share to the specific crossing it represents a stake in.</rdfs:comment>
+        <rdfs:label>share in crossing</rdfs:label>
     </owl:ObjectProperty>
     
 
@@ -979,18 +1110,6 @@ The isAssociatedWithGroup property connects the MEMBERSHIP RECORD to the group â
         <dc:creator>lilianam</dc:creator>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-08-21T15:49:51Z</dc:date>
         <rdfs:label xml:lang="en">share value</rdfs:label>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://data.tastade.org/ontology/sponsoredCrossing -->
-
-    <owl:ObjectProperty rdf:about="http://data.tastade.org/ontology/sponsoredCrossing">
-        <rdfs:domain rdf:resource="http://data.tastade.org/ontology/OutfittingPartnership"/>
-        <rdfs:range rdf:resource="http://data.tastade.org/ontology/Crossing"/>
-        <dc:creator>lilianam</dc:creator>
-        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-08-17T08:44:57Z</dc:date>
-        <rdfs:label xml:lang="en">sponsored crossing</rdfs:label>
     </owl:ObjectProperty>
     
 
@@ -6894,7 +7013,7 @@ For a more complete description, objects may be decomposed into their components
     <!-- http://data.myProject.org/ontology/DebtPayment -->
 
     <owl:Class rdf:about="http://data.myProject.org/ontology/DebtPayment">
-        <rdfs:subClassOf rdf:resource="http://data.myProject.org/ontology/FinancialEvent"/>
+        <rdfs:subClassOf rdf:resource="http://data.myProject.org/ontology/FinancialActivity"/>
         <dc:creator>lilianam</dc:creator>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-08-17T09:48:47Z</dc:date>
         <rdfs:label>Debt Payment</rdfs:label>
@@ -6902,14 +7021,14 @@ For a more complete description, objects may be decomposed into their components
     
 
 
-    <!-- http://data.myProject.org/ontology/FinancialEvent -->
+    <!-- http://data.myProject.org/ontology/FinancialActivity -->
 
-    <owl:Class rdf:about="http://data.myProject.org/ontology/FinancialEvent">
+    <owl:Class rdf:about="http://data.myProject.org/ontology/FinancialActivity">
         <rdfs:subClassOf rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E7_Activity"/>
         <dc:creator>lilianam</dc:creator>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-08-17T09:49:55Z</dc:date>
         <rdfs:comment>An event or activity involving financial transactions, payments, or transfers between actors.</rdfs:comment>
-        <rdfs:label>Financial Event</rdfs:label>
+        <rdfs:label>Financial Activity</rdfs:label>
         <skos:scopeNote xml:lang="en">Includes recurring financial events that can happen multiple times over a financial instrument&apos;s lifetime: 
  - Payments (DebtPayment, DividendPayment)
  - Transfers (ShareTransfer)
@@ -6919,16 +7038,14 @@ Excludes single-occurrence &apos;creation&apos; events (like loan origination or
     
 
 
-    <!-- http://data.tastade.org/ontology/ActorEvent -->
+    <!-- http://data.tastade.org/ontology/ActorActivity -->
 
-    <owl:Class rdf:about="http://data.tastade.org/ontology/ActorEvent">
+    <owl:Class rdf:about="http://data.tastade.org/ontology/ActorActivity">
         <rdfs:subClassOf rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E7_Activity"/>
         <dc:creator>lilianam</dc:creator>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-07-21T08:35:17Z</dc:date>
-        <rdfs:comment xml:lang="en">A significant activity, event, or period in a person&apos;s life or in an organisation&apos;s life too. This is a temporal entity with a time-span, and typically involves the actor as its subject. 
-
-Tastade partially reuses PiCo LifeEvent class: PiCo&apos;s definition: &quot;Life events in PiCo are used for modelling important events in the life of a Person, such as baptism, marriage or burial. Events are primarily used to identify a Person or provide a date and/or a location for a specific milestone in a Persons life. Modelling Events by itself is not a goal of PiCo, and therefore the picom:LifeEvent only has a limited set of properties.&quot;</rdfs:comment>
-        <rdfs:label xml:lang="en">Actor Event</rdfs:label>
+        <rdfs:comment xml:lang="en">A significant activity in a person&apos;s life or in an organisation&apos;s life too. This is a temporal entity with a time-span, and typically involves the actor as its subject.</rdfs:comment>
+        <rdfs:label xml:lang="en">Actor Activity</rdfs:label>
         <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">https://personsincontext.org/model/#LifeEvent</rdfs:seeAlso>
     </owl:Class>
     
@@ -6972,10 +7089,10 @@ Tastade partially reuses PiCo LifeEvent class: PiCo&apos;s definition: &quot;Lif
     
 
 
-    <!-- http://data.tastade.org/ontology/Dividend_Payment -->
+    <!-- http://data.tastade.org/ontology/DividendPayment -->
 
-    <owl:Class rdf:about="http://data.tastade.org/ontology/Dividend_Payment">
-        <rdfs:subClassOf rdf:resource="http://data.myProject.org/ontology/FinancialEvent"/>
+    <owl:Class rdf:about="http://data.tastade.org/ontology/DividendPayment">
+        <rdfs:subClassOf rdf:resource="http://data.myProject.org/ontology/FinancialActivity"/>
         <dc:creator>lilianam</dc:creator>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-06-07T07:07:55Z</dc:date>
         <rdfs:comment xml:lang="en">A binary relationship to register profit distribution. It has two main parties â€” the payer (the company paying the dividend) and the recipient (the shareholder (Actor) receiving it)</rdfs:comment>
@@ -6984,10 +7101,10 @@ Tastade partially reuses PiCo LifeEvent class: PiCo&apos;s definition: &quot;Lif
     
 
 
-    <!-- http://data.tastade.org/ontology/Economic_Activity -->
+    <!-- http://data.tastade.org/ontology/EconomicActivity -->
 
-    <owl:Class rdf:about="http://data.tastade.org/ontology/Economic_Activity">
-        <rdfs:subClassOf rdf:resource="http://data.tastade.org/ontology/ActorEvent"/>
+    <owl:Class rdf:about="http://data.tastade.org/ontology/EconomicActivity">
+        <rdfs:subClassOf rdf:resource="http://data.tastade.org/ontology/ActorActivity"/>
         <dc:creator>lilianam</dc:creator>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-08-11T15:33:27Z</dc:date>
         <rdfs:comment xml:lang="en">Mostly used to describe the economic sector in which a Group (organisation) is involved. 
@@ -7007,9 +7124,9 @@ Note: Enter only what is described in the observation.</rdfs:comment>
     
 
 
-    <!-- http://data.tastade.org/ontology/Economic_Sector_Type -->
+    <!-- http://data.tastade.org/ontology/EconomicSectorType -->
 
-    <owl:Class rdf:about="http://data.tastade.org/ontology/Economic_Sector_Type">
+    <owl:Class rdf:about="http://data.tastade.org/ontology/EconomicSectorType">
         <rdfs:subClassOf rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E55_Type"/>
         <dc:creator>lilianam</dc:creator>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-08-11T16:00:01Z</dc:date>
@@ -7029,9 +7146,9 @@ Note: Enter only what is described in the observation.</rdfs:comment>
     
 
 
-    <!-- http://data.tastade.org/ontology/Enslaved_Person_Ownership -->
+    <!-- http://data.tastade.org/ontology/EnslavedPersonOwnership -->
 
-    <owl:Class rdf:about="http://data.tastade.org/ontology/Enslaved_Person_Ownership">
+    <owl:Class rdf:about="http://data.tastade.org/ontology/EnslavedPersonOwnership">
         <rdfs:subClassOf rdf:resource="http://data.tastade.org/ontology/Ownership"/>
         <dc:creator>lilianam</dc:creator>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-06-07T14:26:28Z</dc:date>
@@ -7063,9 +7180,9 @@ Note: Enter only what is described in the observation.</rdfs:comment>
     
 
 
-    <!-- http://data.tastade.org/ontology/Family_Relationship_Type -->
+    <!-- http://data.tastade.org/ontology/FamilyRelationshipType -->
 
-    <owl:Class rdf:about="http://data.tastade.org/ontology/Family_Relationship_Type">
+    <owl:Class rdf:about="http://data.tastade.org/ontology/FamilyRelationshipType">
         <rdfs:subClassOf rdf:resource="http://data.tastade.org/ontology/RelationType"/>
         <dc:creator>lilianam</dc:creator>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-07-20T13:28:02Z</dc:date>
@@ -7087,9 +7204,9 @@ Currently (August 24, 2026) it includes Loans (debt instruments) and Shares (equ
     
 
 
-    <!-- http://data.tastade.org/ontology/Financial_Instrument_Ownership -->
+    <!-- http://data.tastade.org/ontology/FinancialInstrumentOwnership -->
 
-    <owl:Class rdf:about="http://data.tastade.org/ontology/Financial_Instrument_Ownership">
+    <owl:Class rdf:about="http://data.tastade.org/ontology/FinancialInstrumentOwnership">
         <rdfs:subClassOf rdf:resource="http://data.tastade.org/ontology/Ownership"/>
         <dc:creator>lilianam</dc:creator>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-08-26T08:28:42Z</dc:date>
@@ -7098,9 +7215,9 @@ Currently (August 24, 2026) it includes Loans (debt instruments) and Shares (equ
     
 
 
-    <!-- http://data.tastade.org/ontology/Gender_Type -->
+    <!-- http://data.tastade.org/ontology/GenderType -->
 
-    <owl:Class rdf:about="http://data.tastade.org/ontology/Gender_Type">
+    <owl:Class rdf:about="http://data.tastade.org/ontology/GenderType">
         <rdfs:subClassOf rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E55_Type"/>
         <dc:creator>lilianam</dc:creator>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-07-21T09:07:05Z</dc:date>
@@ -7121,6 +7238,17 @@ Currently (August 24, 2026) it includes Loans (debt instruments) and Shares (equ
     
 
 
+    <!-- http://data.tastade.org/ontology/GroupRelationshipType -->
+
+    <owl:Class rdf:about="http://data.tastade.org/ontology/GroupRelationshipType">
+        <rdfs:subClassOf rdf:resource="http://data.tastade.org/ontology/RelationType"/>
+        <dc:creator>lilianam</dc:creator>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-08-12T08:29:55Z</dc:date>
+        <rdfs:label xml:lang="en">Group Relationship Type</rdfs:label>
+    </owl:Class>
+    
+
+
     <!-- http://data.tastade.org/ontology/GroupType -->
 
     <owl:Class rdf:about="http://data.tastade.org/ontology/GroupType">
@@ -7132,20 +7260,9 @@ Currently (August 24, 2026) it includes Loans (debt instruments) and Shares (equ
     
 
 
-    <!-- http://data.tastade.org/ontology/Group_Relationship_Type -->
+    <!-- http://data.tastade.org/ontology/IdentifierType -->
 
-    <owl:Class rdf:about="http://data.tastade.org/ontology/Group_Relationship_Type">
-        <rdfs:subClassOf rdf:resource="http://data.tastade.org/ontology/RelationType"/>
-        <dc:creator>lilianam</dc:creator>
-        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-08-12T08:29:55Z</dc:date>
-        <rdfs:label xml:lang="en">Group Relationship Type</rdfs:label>
-    </owl:Class>
-    
-
-
-    <!-- http://data.tastade.org/ontology/Identifier_Type -->
-
-    <owl:Class rdf:about="http://data.tastade.org/ontology/Identifier_Type">
+    <owl:Class rdf:about="http://data.tastade.org/ontology/IdentifierType">
         <rdfs:subClassOf rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E55_Type"/>
         <dc:creator>lilianam</dc:creator>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-08-14T09:24:50Z</dc:date>
@@ -7179,10 +7296,10 @@ Currently (August 24, 2026) it includes Loans (debt instruments) and Shares (equ
     
 
 
-    <!-- http://data.tastade.org/ontology/Loan_Ownership -->
+    <!-- http://data.tastade.org/ontology/LoanOwnership -->
 
-    <owl:Class rdf:about="http://data.tastade.org/ontology/Loan_Ownership">
-        <rdfs:subClassOf rdf:resource="http://data.tastade.org/ontology/Financial_Instrument_Ownership"/>
+    <owl:Class rdf:about="http://data.tastade.org/ontology/LoanOwnership">
+        <rdfs:subClassOf rdf:resource="http://data.tastade.org/ontology/FinancialInstrumentOwnership"/>
         <dc:creator>lilianam</dc:creator>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-08-17T13:58:31Z</dc:date>
         <rdfs:comment xml:lang="en">Represents the creditor&apos;s ownership of a loan as a legal asset. The creditor holds the loan; the debtor is obligated per the loan&apos;s terms.</rdfs:comment>
@@ -7191,9 +7308,9 @@ Currently (August 24, 2026) it includes Loans (debt instruments) and Shares (equ
     
 
 
-    <!-- http://data.tastade.org/ontology/Loan_Type -->
+    <!-- http://data.tastade.org/ontology/LoanType -->
 
-    <owl:Class rdf:about="http://data.tastade.org/ontology/Loan_Type">
+    <owl:Class rdf:about="http://data.tastade.org/ontology/LoanType">
         <rdfs:subClassOf rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E55_Type"/>
         <dc:creator>lilianam</dc:creator>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-08-17T13:36:44Z</dc:date>
@@ -7208,8 +7325,9 @@ Currently (August 24, 2026) it includes Loans (debt instruments) and Shares (equ
         <rdfs:subClassOf rdf:resource="http://data.tastade.org/ontology/GroupRelationship"/>
         <dc:creator>lilianam</dc:creator>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-06-09T14:25:44Z</dc:date>
-        <rdfs:comment xml:lang="en">A specific kind of group relationship where a person is a member of a group or is the holder of a position in an organization.</rdfs:comment>
+        <rdfs:comment xml:lang="en">A specific kind of group relationship expressing a person&apos;s belonging to a group. Abstract parent for specific kinds of membership.</rdfs:comment>
         <rdfs:label xml:lang="en">Membership-Relationship</rdfs:label>
+        <skos:scopeNote>Use subclasses to distinguish specific kinds of membership when relevant (OrganizationalMembership, ReligiousMembership, CivicMembership). The generic Membership class can be used when the type is not further specified or when the group&apos;s own type is sufficient to convey the nature of belonging.</skos:scopeNote>
     </owl:Class>
     
 
@@ -7229,7 +7347,7 @@ Currently (August 24, 2026) it includes Loans (debt instruments) and Shares (equ
     <!-- http://data.tastade.org/ontology/Occupation -->
 
     <owl:Class rdf:about="http://data.tastade.org/ontology/Occupation">
-        <rdfs:subClassOf rdf:resource="http://data.tastade.org/ontology/ActorEvent"/>
+        <rdfs:subClassOf rdf:resource="http://data.tastade.org/ontology/ActorActivity"/>
         <dc:creator>lilianam</dc:creator>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-07-21T08:38:26Z</dc:date>
         <rdfs:comment xml:lang="en">The activity of holding a specific occupation, role, or profession for a period of time.
@@ -7240,15 +7358,28 @@ Tastade partially complies with PiCo&apos;s direct property for occupation: http
     
 
 
-    <!-- http://data.tastade.org/ontology/OutfittingPartnership -->
+    <!-- http://data.tastade.org/ontology/OrganizationalMembership -->
 
-    <owl:Class rdf:about="http://data.tastade.org/ontology/OutfittingPartnership">
-        <rdfs:subClassOf rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E74_Group"/>
+    <owl:Class rdf:about="http://data.tastade.org/ontology/OrganizationalMembership">
+        <rdfs:subClassOf rdf:resource="http://data.tastade.org/ontology/MembershipRelationship"/>
+        <owl:disjointWith rdf:resource="http://data.tastade.org/ontology/ReligiousAffiliation"/>
         <dc:creator>lilianam</dc:creator>
-        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-08-17T08:39:04Z</dc:date>
-        <rdfs:comment xml:lang="en">A partnership organized to outfit a vessel for a specific voyage. Investors hold shares in the partnership, with proportional rights to profits and obligations for costs.</rdfs:comment>
-        <rdfs:label xml:lang="fr">Armement</rdfs:label>
-        <rdfs:label xml:lang="en">Outfitting Partnership</rdfs:label>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-09-30T10:39:56Z</dc:date>
+        <rdfs:comment>Membership in a formal organization (partnership, firm, trading company, guild), typically involving a specific role or position (director, partner, apprentice, member).</rdfs:comment>
+        <rdfs:label>Organizational Membership</rdfs:label>
+        <rdfs:seeAlso></rdfs:seeAlso>
+    </owl:Class>
+    
+
+
+    <!-- http://data.tastade.org/ontology/Outfitting -->
+
+    <owl:Class rdf:about="http://data.tastade.org/ontology/Outfitting">
+        <rdfs:subClassOf rdf:resource="http://data.myProject.org/ontology/FinancialActivity"/>
+        <dc:creator>lilianam</dc:creator>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-10-01T08:14:48Z</dc:date>
+        <rdfs:comment>The act of fitting out a ship for a crossing, typically by a partnership of merchants.</rdfs:comment>
+        <rdfs:label>Outfitting</rdfs:label>
     </owl:Class>
     
 
@@ -7289,6 +7420,19 @@ Tastade partially complies with PiCo&apos;s direct property for occupation: http
     
 
 
+    <!-- http://data.tastade.org/ontology/PoliticalFunction -->
+
+    <owl:Class rdf:about="http://data.tastade.org/ontology/PoliticalFunction">
+        <rdfs:subClassOf rdf:resource="http://data.tastade.org/ontology/MembershipRelationship"/>
+        <dc:creator>lilianam</dc:creator>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-10-05T09:55:56Z</dc:date>
+        <rdfs:comment>This class comprises membership relationships in which an actor holds a formal office, position, or seat within a polity&apos;s governmental or administrative body. It encompasses civic offices (such as aldermen, burgomasters, pensionaries, treasurers of a city), sovereign offices (such as councillors of state, ministers, governors, ambassadors), and other formally recognized political positions through which an actor participates in a polity&apos;s political authority, deliberation, or administration.</rdfs:comment>
+        <rdfs:label>Political Function</rdfs:label>
+        <skos:scopeNote>A Political Membership links an actor to a polity (via ont:belongsToGroup) and specifies the specific office or role via ont:has_relation_type (drawn from a controlled vocabulary of political roles). The membership&apos;s period captures the term of office. Use Political Membership when the group is a Polity. For formal positions in non-political organized bodies (trading companies, partnerships, firms, chambers of commerce, guilds), use OrganizationalMembership. For looser religious identity (not formal ecclesiastical office), use ReligiousAffiliation; for formal ecclesiastical offices (elder, deacon, minister), use OrganizationalMembership with the religious body as the group.</skos:scopeNote>
+    </owl:Class>
+    
+
+
     <!-- http://data.tastade.org/ontology/Polity -->
 
     <owl:Class rdf:about="http://data.tastade.org/ontology/Polity">
@@ -7305,9 +7449,9 @@ Modeled as a subclass of E74 Group because polities are collective entities whos
     
 
 
-    <!-- http://data.tastade.org/ontology/Polity_Type -->
+    <!-- http://data.tastade.org/ontology/PolityType -->
 
-    <owl:Class rdf:about="http://data.tastade.org/ontology/Polity_Type">
+    <owl:Class rdf:about="http://data.tastade.org/ontology/PolityType">
         <rdfs:subClassOf rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E55_Type"/>
         <dc:creator>lilianam</dc:creator>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-08-27T13:23:21Z</dc:date>
@@ -7316,9 +7460,9 @@ Modeled as a subclass of E74 Group because polities are collective entities whos
     
 
 
-    <!-- http://data.tastade.org/ontology/Property_Ownership -->
+    <!-- http://data.tastade.org/ontology/PropertyOwnership -->
 
-    <owl:Class rdf:about="http://data.tastade.org/ontology/Property_Ownership">
+    <owl:Class rdf:about="http://data.tastade.org/ontology/PropertyOwnership">
         <rdfs:subClassOf rdf:resource="http://data.tastade.org/ontology/Ownership"/>
         <dc:creator>lilianam</dc:creator>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-06-07T14:26:04Z</dc:date>
@@ -7350,13 +7494,31 @@ Modeled as a subclass of E74 Group because polities are collective entities whos
     
 
 
+    <!-- http://data.tastade.org/ontology/ReligiousAffiliation -->
+
+    <owl:Class rdf:about="http://data.tastade.org/ontology/ReligiousAffiliation">
+        <rdfs:subClassOf rdf:resource="http://data.tastade.org/ontology/MembershipRelationship"/>
+        <dc:creator>lilianam</dc:creator>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-09-30T10:39:56Z</dc:date>
+        <rdfs:comment>A person&apos;s affiliation with a religious community, denomination, or church. It is used when a person has a &apos;belief&apos; or is affiliated to a religion, and typically does not involve a specific role. If the person has an official ecclesiastical position (e.g., elder, deacon, minister), use OrganizationalMembership instead.
+Examples:
+&quot;Baudoin is Catholic&quot; â†’ ReligiousMembership
+&quot;Baudoin is an elder&quot; â†’ OrganizationalMembership (role: elder)</rdfs:comment>
+        <rdfs:comment>A person&apos;s membership in a religious group, denomination, or church.</rdfs:comment>
+        <rdfs:label>Religious Affiliation</rdfs:label>
+        <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">https://personsincontext.org/model#hasReligion</rdfs:seeAlso>
+    </owl:Class>
+    
+
+
     <!-- http://data.tastade.org/ontology/Residence -->
 
     <owl:Class rdf:about="http://data.tastade.org/ontology/Residence">
-        <rdfs:subClassOf rdf:resource="http://data.tastade.org/ontology/ActorEvent"/>
+        <rdfs:subClassOf rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E5_Event"/>
         <dc:creator>lilianam</dc:creator>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-09-25T14:21:57Z</dc:date>
-        <rdfs:comment>A period during which a person is documented as residing in a specific place. Multiple residences over time capture geographic mobility.</rdfs:comment>
+        <rdfs:comment>A period during which a person is documented as residing in a specific place. Multiple residences over time capture geographic mobility.
+Residence is a state of presence, not an intentional activity. Note the deliberate placement under E5_Event (not E7_Activity)</rdfs:comment>
         <rdfs:label>Residence</rdfs:label>
     </owl:Class>
     
@@ -7374,25 +7536,25 @@ Modeled as a subclass of E74 Group because polities are collective entities whos
     
 
 
-    <!-- http://data.tastade.org/ontology/ShareTransfer -->
+    <!-- http://data.tastade.org/ontology/ShareOwnership -->
 
-    <owl:Class rdf:about="http://data.tastade.org/ontology/ShareTransfer">
-        <rdfs:subClassOf rdf:resource="http://data.myProject.org/ontology/FinancialEvent"/>
+    <owl:Class rdf:about="http://data.tastade.org/ontology/ShareOwnership">
+        <rdfs:subClassOf rdf:resource="http://data.tastade.org/ontology/FinancialInstrumentOwnership"/>
         <dc:creator>lilianam</dc:creator>
-        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-08-17T09:46:41Z</dc:date>
-        <rdfs:comment>Sale/purchase/gift of partnership shares</rdfs:comment>
-        <rdfs:label xml:lang="en">Share Transfer</rdfs:label>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-06-07T14:25:53Z</dc:date>
+        <rdfs:label xml:lang="en">Share Ownership</rdfs:label>
     </owl:Class>
     
 
 
-    <!-- http://data.tastade.org/ontology/Share_Ownership -->
+    <!-- http://data.tastade.org/ontology/ShareTransfer -->
 
-    <owl:Class rdf:about="http://data.tastade.org/ontology/Share_Ownership">
-        <rdfs:subClassOf rdf:resource="http://data.tastade.org/ontology/Financial_Instrument_Ownership"/>
+    <owl:Class rdf:about="http://data.tastade.org/ontology/ShareTransfer">
+        <rdfs:subClassOf rdf:resource="http://data.myProject.org/ontology/FinancialActivity"/>
         <dc:creator>lilianam</dc:creator>
-        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-06-07T14:25:53Z</dc:date>
-        <rdfs:label xml:lang="en">Share Ownership</rdfs:label>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-08-17T09:46:41Z</dc:date>
+        <rdfs:comment>Sale/purchase/gift of partnership shares</rdfs:comment>
+        <rdfs:label xml:lang="en">Share Transfer</rdfs:label>
     </owl:Class>
     
 
@@ -7413,7 +7575,7 @@ Modeled as a subclass of E74 Group because polities are collective entities whos
     <!-- http://data.tastade.org/ontology/ShipOwnership -->
 
     <owl:Class rdf:about="http://data.tastade.org/ontology/ShipOwnership">
-        <rdfs:subClassOf rdf:resource="http://data.tastade.org/ontology/Property_Ownership"/>
+        <rdfs:subClassOf rdf:resource="http://data.tastade.org/ontology/PropertyOwnership"/>
         <rdfs:label xml:lang="en">Ship Ownership</rdfs:label>
     </owl:Class>
     
@@ -7427,17 +7589,6 @@ Modeled as a subclass of E74 Group because polities are collective entities whos
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-06-09T14:23:08Z</dc:date>
         <rdfs:comment xml:lang="en">A non-kinship social relationship between two persons, including master-apprentice, patron-client, godparent-godchild, witness, and similar. It also includes friends, associates, patrons, godparents, etc.). The specific nature is captured via has_relation_type.</rdfs:comment>
         <rdfs:label xml:lang="en">Social-Relationship</rdfs:label>
-    </owl:Class>
-    
-
-
-    <!-- http://data.tastade.org/ontology/TradingCompany -->
-
-    <owl:Class rdf:about="http://data.tastade.org/ontology/TradingCompany">
-        <rdfs:subClassOf rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E74_Group"/>
-        <dc:creator>lilianam</dc:creator>
-        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-08-17T08:40:10Z</dc:date>
-        <rdfs:label xml:lang="en">Trading Company</rdfs:label>
     </owl:Class>
     
 
@@ -8774,10 +8925,49 @@ Note, that the class E9 Move inherits the property P7 took place at (witnessed):
     
 
 
+    <!-- http://data.tastade.org/ontology/activity_0001 -->
+
+    <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/activity_0001">
+        <rdf:type rdf:resource="http://data.tastade.org/ontology/Occupation"/>
+        <cidoc-crm:P14_carried_out_by rdf:resource="http://data.tastade.org/ontology/actor_0004"/>
+        <cidoc-crm:P2_has_type rdf:resource="http://data.tastade.org/ontology/term_0005"/>
+        <dc:creator>lilianam</dc:creator>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-10-05T12:59:05Z</dc:date>
+        <rdfs:label xml:lang="en">activity_occupation-anselmo-slaveTrade</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://data.tastade.org/ontology/activity_0002 -->
+
+    <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/activity_0002">
+        <rdf:type rdf:resource="http://data.tastade.org/ontology/EconomicActivity"/>
+        <cidoc-crm:P14_carried_out_by rdf:resource="http://data.tastade.org/ontology/actor_0004"/>
+        <cidoc-crm:P2_has_type rdf:resource="http://data.tastade.org/ontology/term_0004"/>
+        <dc:creator>lilianam</dc:creator>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-08-11T15:55:11Z</dc:date>
+        <rdfs:label xml:lang="en">activity_economic-activity-anselmo-textile</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://data.tastade.org/ontology/activity_0009 -->
+
+    <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/activity_0009">
+        <rdf:type rdf:resource="http://data.tastade.org/ontology/EconomicActivity"/>
+        <cidoc-crm:P14_carried_out_by rdf:resource="http://data.tastade.org/ontology/actor_0006"/>
+        <cidoc-crm:P2_has_type rdf:resource="http://data.tastade.org/ontology/term_0005"/>
+        <cidoc-crm:P4_has_time-span rdf:resource="http://data.tastade.org/ontology/timespan_0006"/>
+        <dc:creator>lilianam</dc:creator>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-08-12T08:16:41Z</dc:date>
+        <rdfs:label xml:lang="en">activity_economic-activity-firma</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://data.tastade.org/ontology/actor_0001 -->
 
     <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/actor_0001">
-        <rdf:type rdf:resource="http://data.tastade.org/ontology/Observation"/>
         <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E21_Person"/>
         <ontology:hasGender rdf:resource="http://data.tastade.org/ontology/term_0002"/>
         <cidoc-crm:P1_is_identified_by rdf:resource="http://data.tastade.org/ontology/appellation_0001"/>
@@ -8786,7 +8976,7 @@ Note, that the class E9 Move inherits the property P7 took place at (witnessed):
         <bibo:locator>folio 24, line 21</bibo:locator>
         <dc:creator>lilianam</dc:creator>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-06-05T12:12:30Z</dc:date>
-        <rdfs:label xml:lang="en">actor_obs_friedrichLiunge_from_sourceRigsarkivet</rdfs:label>
+        <rdfs:label xml:lang="en">actor_friedrichLiunge</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -8794,13 +8984,12 @@ Note, that the class E9 Move inherits the property P7 took place at (witnessed):
     <!-- http://data.tastade.org/ontology/actor_0002 -->
 
     <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/actor_0002">
-        <rdf:type rdf:resource="http://data.tastade.org/ontology/Observation"/>
         <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E74_Group"/>
         <cidoc-crm:P1_is_identified_by rdf:resource="http://data.tastade.org/ontology/appellation_0002"/>
         <cidoc-crm:P70i_is_documented_in rdf:resource="http://data.tastade.org/ontology/source_0001"/>
         <dc:creator>lilianam</dc:creator>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-06-05T12:44:55Z</dc:date>
-        <rdfs:label xml:lang="en">actor_obs_dwic_from_sourceRigsarkivet</rdfs:label>
+        <rdfs:label xml:lang="en">actor_dwic</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -8808,7 +8997,6 @@ Note, that the class E9 Move inherits the property P7 took place at (witnessed):
     <!-- http://data.tastade.org/ontology/actor_0003 -->
 
     <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/actor_0003">
-        <rdf:type rdf:resource="http://data.tastade.org/ontology/Observation"/>
         <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E74_Group"/>
         <cidoc-crm:P1_is_identified_by rdf:resource="http://data.tastade.org/ontology/appellation_0003"/>
         <cidoc-crm:P70i_is_documented_in rdf:resource="http://data.tastade.org/ontology/source_0001"/>
@@ -8816,7 +9004,7 @@ Note, that the class E9 Move inherits the property P7 took place at (witnessed):
         <bibo:locator rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">folio 24, line 22</bibo:locator>
         <dc:creator>lilianam</dc:creator>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-06-07T10:20:24Z</dc:date>
-        <rdfs:label>actor_obs_karupAndLiunge_from_sourceRigsarkivet</rdfs:label>
+        <rdfs:label>actor_karupAndLiunge</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -8824,17 +9012,12 @@ Note, that the class E9 Move inherits the property P7 took place at (witnessed):
     <!-- http://data.tastade.org/ontology/actor_0004 -->
 
     <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/actor_0004">
-        <rdf:type rdf:resource="http://data.tastade.org/ontology/Observation"/>
         <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E21_Person"/>
-        <ontology:birthDate rdf:resource="http://data.tastade.org/ontology/timespan_0003"/>
-        <ontology:birthPlace rdf:resource="http://data.tastade.org/ontology/place_0005"/>
         <ontology:hasGender rdf:resource="http://data.tastade.org/ontology/term_0002"/>
-        <ontology:hasNationality rdf:resource="http://data.tastade.org/ontology/polity_0001"/>
         <cidoc-crm:P1_is_identified_by rdf:resource="http://data.tastade.org/ontology/appellation_0004"/>
-        <cidoc-crm:P70i_is_documented_in rdf:resource="http://data.tastade.org/ontology/source_0002"/>
         <dc:creator>lilianam</dc:creator>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-06-15T08:51:58Z</dc:date>
-        <rdfs:label xml:lang="en">actor_obs_antonioAnselmo_from_sourceMok</rdfs:label>
+        <rdfs:label xml:lang="en">actor_antonioAnselmo</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -8842,14 +9025,13 @@ Note, that the class E9 Move inherits the property P7 took place at (witnessed):
     <!-- http://data.tastade.org/ontology/actor_0005 -->
 
     <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/actor_0005">
-        <rdf:type rdf:resource="http://data.tastade.org/ontology/Observation"/>
         <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E21_Person"/>
         <ontology:hasGender rdf:resource="http://data.tastade.org/ontology/term_0008"/>
         <cidoc-crm:P1_is_identified_by rdf:resource="http://data.tastade.org/ontology/appellation_0005"/>
         <cidoc-crm:P70i_is_documented_in rdf:resource="http://data.tastade.org/ontology/source_0002"/>
         <dc:creator>lilianam</dc:creator>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-06-17T09:53:58Z</dc:date>
-        <rdfs:label>actor_obs_johannaHooftman_from_sourceMok</rdfs:label>
+        <rdfs:label>actor_johannaHooftman</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -8857,13 +9039,12 @@ Note, that the class E9 Move inherits the property P7 took place at (witnessed):
     <!-- http://data.tastade.org/ontology/actor_0006 -->
 
     <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/actor_0006">
-        <rdf:type rdf:resource="http://data.tastade.org/ontology/Observation"/>
         <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E74_Group"/>
         <cidoc-crm:P1_is_identified_by rdf:resource="http://data.tastade.org/ontology/appellation_0006"/>
         <cidoc-crm:P70i_is_documented_in rdf:resource="http://data.tastade.org/ontology/source_0002"/>
         <dc:creator>lilianam</dc:creator>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-06-22T11:59:46Z</dc:date>
-        <rdfs:label>actor_obs_firmaAnselmo_from_sourceMok</rdfs:label>
+        <rdfs:label>actor_firmaAnselmo</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -8871,14 +9052,13 @@ Note, that the class E9 Move inherits the property P7 took place at (witnessed):
     <!-- http://data.tastade.org/ontology/actor_0007 -->
 
     <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/actor_0007">
-        <rdf:type rdf:resource="http://data.tastade.org/ontology/Observation"/>
         <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E21_Person"/>
         <cidoc-crm:P70i_is_documented_in rdf:resource="http://data.tastade.org/ontology/source_0002"/>
         <cidoc-crm:P3_has_note xml:lang="nl">&quot;Haar familie behoorde tot de rijken van die stad en haar vader beschikte als reder over een enorm internationaal handelsnetwerk, waar Anselmo door zijn huwelijk deel van ging uitmaken.&quot; (Mok,2023, p.11)</cidoc-crm:P3_has_note>
-        <cidoc-crm:P3_has_note>Do more research about this person</cidoc-crm:P3_has_note>
+        <cidoc-crm:P3_has_note>Do more research about this person. This is Johanna&apos;s father</cidoc-crm:P3_has_note>
         <dc:creator>lilianam</dc:creator>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-06-22T13:23:12Z</dc:date>
-        <rdfs:label>actor_obs_unknownHooftman_from_sourceMok</rdfs:label>
+        <rdfs:label>actor_unknownHooftman</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -8886,13 +9066,11 @@ Note, that the class E9 Move inherits the property P7 took place at (witnessed):
     <!-- http://data.tastade.org/ontology/actor_0008 -->
 
     <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/actor_0008">
-        <rdf:type rdf:resource="http://data.tastade.org/ontology/Observation"/>
         <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E74_Group"/>
         <cidoc-crm:P1_is_identified_by rdf:resource="http://data.tastade.org/ontology/appellation_0008"/>
-        <cidoc-crm:P70i_is_documented_in rdf:resource="http://data.tastade.org/ontology/source_0002"/>
         <dc:creator>lilianam</dc:creator>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-08-11T14:46:32Z</dc:date>
-        <rdfs:label xml:lang="en">actor_obs_voc_from_sourceMok</rdfs:label>
+        <rdfs:label xml:lang="en">actor_voc</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -8900,16 +9078,14 @@ Note, that the class E9 Move inherits the property P7 took place at (witnessed):
     <!-- http://data.tastade.org/ontology/actor_0009 -->
 
     <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/actor_0009">
-        <rdf:type rdf:resource="http://data.tastade.org/ontology/Observation"/>
         <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E21_Person"/>
-        <ontology:activePeriod rdf:resource="http://data.tastade.org/ontology/timespan_0003"/>
         <ontology:hasGender rdf:resource="http://data.tastade.org/ontology/term_0002"/>
         <cidoc-crm:P1_is_identified_by rdf:resource="http://data.tastade.org/ontology/appellation_0009"/>
         <cidoc-crm:P70i_is_documented_in rdf:resource="http://data.tastade.org/ontology/source_0005"/>
         <bibo:locator>fol. 3r. -3v</bibo:locator>
         <dc:creator>lilianam</dc:creator>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-08-14T07:45:59Z</dc:date>
-        <rdfs:label xml:lang="en">actor_obs_antoineBaudoin_from_sourceNantes</rdfs:label>
+        <rdfs:label xml:lang="en">actor_antoineBaudoin</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -8917,12 +9093,14 @@ Note, that the class E9 Move inherits the property P7 took place at (witnessed):
     <!-- http://data.tastade.org/ontology/actor_0010 -->
 
     <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/actor_0010">
-        <rdf:type rdf:resource="http://data.tastade.org/ontology/OutfittingPartnership"/>
-        <ontology:sponsoredCrossing rdf:resource="http://data.tastade.org/ontology/event_0010"/>
+        <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E74_Group"/>
+        <ontology:hasMember rdf:resource="http://data.tastade.org/ontology/actor_0016"/>
+        <ontology:outfittedForCrossing rdf:resource="http://data.tastade.org/ontology/event_0010"/>
+        <cidoc-crm:P2_has_type rdf:resource="http://data.tastade.org/ontology/term_0014"/>
         <cidoc-crm:P70i_is_documented_in rdf:resource="http://data.tastade.org/ontology/source_0006"/>
         <dc:creator>lilianam</dc:creator>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-08-17T12:41:27Z</dc:date>
-        <rdfs:label xml:lang="en">actor_obs_outfitting_partnership_lePactole_from_sourceOutremers</rdfs:label>
+        <rdfs:label xml:lang="en">actor_outfitting_partnership_lePactole</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -8930,11 +9108,13 @@ Note, that the class E9 Move inherits the property P7 took place at (witnessed):
     <!-- http://data.tastade.org/ontology/actor_0011 -->
 
     <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/actor_0011">
-        <rdf:type rdf:resource="http://data.tastade.org/ontology/OutfittingPartnership"/>
-        <ontology:sponsoredCrossing rdf:resource="http://data.tastade.org/ontology/event_0014"/>
+        <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E74_Group"/>
+        <ontology:hasMember rdf:resource="http://data.tastade.org/ontology/actor_0009"/>
+        <ontology:outfittedForCrossing rdf:resource="http://data.tastade.org/ontology/event_0014"/>
+        <cidoc-crm:P2_has_type rdf:resource="http://data.tastade.org/ontology/term_0014"/>
         <dc:creator>lilianam</dc:creator>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-08-17T08:54:27Z</dc:date>
-        <rdfs:label>actor_obs_outfitting_partnership_negresse_from_sourceNantes</rdfs:label>
+        <rdfs:label>actor_outfitting_partnership_negresse</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -8942,15 +9122,13 @@ Note, that the class E9 Move inherits the property P7 took place at (witnessed):
     <!-- http://data.tastade.org/ontology/actor_0013 -->
 
     <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/actor_0013">
-        <rdf:type rdf:resource="http://data.tastade.org/ontology/Observation"/>
         <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E21_Person"/>
         <ontology:hasGender rdf:resource="http://data.tastade.org/ontology/term_0002"/>
-        <ontology:hasNationality rdf:resource="http://data.tastade.org/ontology/polity_0003"/>
         <cidoc-crm:P1_is_identified_by rdf:resource="http://data.tastade.org/ontology/appellation_0010"/>
         <cidoc-crm:P70i_is_documented_in rdf:resource="http://data.tastade.org/ontology/source_0006"/>
         <dc:creator>lilianam</dc:creator>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-08-17T12:44:31Z</dc:date>
-        <rdfs:label xml:lang="en">actor_obs_reneJosephSalaun_from_sourceOutremers</rdfs:label>
+        <rdfs:label xml:lang="en">actor_reneJosephSalaun</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -8958,13 +9136,12 @@ Note, that the class E9 Move inherits the property P7 took place at (witnessed):
     <!-- http://data.tastade.org/ontology/actor_0014 -->
 
     <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/actor_0014">
-        <rdf:type rdf:resource="http://data.tastade.org/ontology/Observation"/>
         <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E74_Group"/>
         <cidoc-crm:P2_has_type rdf:resource="http://data.tastade.org/ontology/term_0012"/>
         <cidoc-crm:P70i_is_documented_in rdf:resource="http://data.tastade.org/ontology/source_0006"/>
         <dc:creator>lilianam</dc:creator>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-08-17T12:57:20Z</dc:date>
-        <rdfs:label xml:lang="en">actor_obs_firmArmandFranÃ§oisDelavilleCo_from_sourceOutremers</rdfs:label>
+        <rdfs:label xml:lang="en">actor_firmArmandFranÃ§oisDelavilleCo</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -8977,7 +9154,35 @@ Note, that the class E9 Move inherits the property P7 took place at (witnessed):
         <cidoc-crm:P70i_is_documented_in rdf:resource="http://data.tastade.org/ontology/source_0006"/>
         <dc:creator>lilianam</dc:creator>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-08-24T08:54:36Z</dc:date>
-        <rdfs:label xml:lang="en">actor_obs_orillardAine_from_sourceNantes</rdfs:label>
+        <rdfs:label xml:lang="en">actor_orillardAine</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://data.tastade.org/ontology/actor_0016 -->
+
+    <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/actor_0016">
+        <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E21_Person"/>
+        <ontology:hasGender rdf:resource="http://data.tastade.org/ontology/term_0002"/>
+        <cidoc-crm:P1_is_identified_by rdf:resource="http://data.tastade.org/ontology/appellation_0013"/>
+        <cidoc-crm:P70i_is_documented_in rdf:resource="http://data.tastade.org/ontology/source_0006"/>
+        <dc:creator>lilianam</dc:creator>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-10-01T09:56:32Z</dc:date>
+        <rdfs:label xml:lang="en">actor_etienneJeanMarieMercier</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://data.tastade.org/ontology/actor_0026 -->
+
+    <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/actor_0026">
+        <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E74_Group"/>
+        <cidoc-crm:P2_has_type rdf:resource="http://data.tastade.org/ontology/term_0027"/>
+        <dc:creator>lilianam</dc:creator>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-10-01T14:47:16Z</dc:date>
+        <rdfs:label xml:lang="en">actor_protestant-group</rdfs:label>
+        <schema:sameAs rdf:resource="https://iisg.amsterdam/resource/ListOfDenominations/Protestant"/>
+        <schema:sameAs rdf:resource="https://www.wikidata.org/wiki/Q23540"/>
     </owl:NamedIndividual>
     
 
@@ -9137,6 +9342,17 @@ Note, that the class E9 Move inherits the property P7 took place at (witnessed):
     
 
 
+    <!-- http://data.tastade.org/ontology/appellation_0013 -->
+
+    <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/appellation_0013">
+        <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E33_E41_Linguistic_Appellation"/>
+        <dc:creator>lilianam</dc:creator>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-10-05T08:33:23Z</dc:date>
+        <rdfs:label xml:lang="en">appellation_jean-marie-mercier</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://data.tastade.org/ontology/currency_0002 -->
 
     <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/currency_0002">
@@ -9189,11 +9405,11 @@ Note, that the class E9 Move inherits the property P7 took place at (witnessed):
     <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/event_0003">
         <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E67_Birth"/>
         <cidoc-crm:P4_has_time-span rdf:resource="http://data.tastade.org/ontology/timespan_0003"/>
-        <cidoc-crm:P70i_is_documented_in rdf:resource="http://data.tastade.org/ontology/source_0002"/>
+        <cidoc-crm:P7_took_place_at rdf:resource="http://data.tastade.org/ontology/place_0005"/>
         <cidoc-crm:P98_brought_into_life rdf:resource="http://data.tastade.org/ontology/actor_0004"/>
         <dc:creator>lilianam</dc:creator>
-        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-06-22T12:18:02Z</dc:date>
-        <rdfs:label>event_birth_antonio-anselmo</rdfs:label>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-10-05T07:31:02Z</dc:date>
+        <rdfs:label xml:lang="en">event_birth_antonioAnselmo</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -9208,19 +9424,6 @@ Note, that the class E9 Move inherits the property P7 took place at (witnessed):
         <dc:creator>lilianam</dc:creator>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-06-22T12:32:15Z</dc:date>
         <rdfs:label>event_death_antonio-anselmo</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://data.tastade.org/ontology/event_0005 -->
-
-    <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/event_0005">
-        <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E67_Birth"/>
-        <cidoc-crm:P70i_is_documented_in rdf:resource="http://data.tastade.org/ontology/source_0002"/>
-        <cidoc-crm:P98_brought_into_life rdf:resource="http://data.tastade.org/ontology/actor_0005"/>
-        <dc:creator>lilianam</dc:creator>
-        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-06-22T13:23:55Z</dc:date>
-        <rdfs:label>event_birth_johanna-hooftman</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -9251,39 +9454,13 @@ Note, that the class E9 Move inherits the property P7 took place at (witnessed):
     
 
 
-    <!-- http://data.tastade.org/ontology/event_0008 -->
-
-    <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/event_0008">
-        <rdf:type rdf:resource="http://data.tastade.org/ontology/Economic_Activity"/>
-        <cidoc-crm:P14_carried_out_by rdf:resource="http://data.tastade.org/ontology/actor_0004"/>
-        <cidoc-crm:P2_has_type rdf:resource="http://data.tastade.org/ontology/term_0004"/>
-        <dc:creator>lilianam</dc:creator>
-        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-08-11T15:55:11Z</dc:date>
-        <rdfs:label xml:lang="en">event_economic-activity-anselmo</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://data.tastade.org/ontology/event_0009 -->
-
-    <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/event_0009">
-        <rdf:type rdf:resource="http://data.tastade.org/ontology/Economic_Activity"/>
-        <cidoc-crm:P14_carried_out_by rdf:resource="http://data.tastade.org/ontology/actor_0006"/>
-        <cidoc-crm:P2_has_type rdf:resource="http://data.tastade.org/ontology/term_0005"/>
-        <cidoc-crm:P4_has_time-span rdf:resource="http://data.tastade.org/ontology/timespan_0006"/>
-        <dc:creator>lilianam</dc:creator>
-        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-08-12T08:16:41Z</dc:date>
-        <rdfs:label xml:lang="en">event_economic-activity-firma</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
     <!-- http://data.tastade.org/ontology/event_0010 -->
 
     <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/event_0010">
         <rdf:type rdf:resource="http://data.tastade.org/ontology/Crossing"/>
         <cidoc-crm:P16_used_specific_object rdf:resource="http://data.tastade.org/ontology/ship_0002"/>
         <cidoc-crm:P1_is_identified_by rdf:resource="http://data.tastade.org/ontology/id_0005"/>
+        <cidoc-crm:P4_has_time-span rdf:resource="http://data.tastade.org/ontology/timespan_0024"/>
         <dc:creator>lilianam</dc:creator>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-08-17T12:32:35Z</dc:date>
         <rdfs:label xml:lang="en">event_crossing_34479</rdfs:label>
@@ -9296,7 +9473,7 @@ Note, that the class E9 Move inherits the property P7 took place at (witnessed):
 
     <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/event_0011">
         <rdf:type rdf:resource="http://data.tastade.org/ontology/Residence"/>
-        <cidoc-crm:P14_carried_out_by rdf:resource="http://data.tastade.org/ontology/actor_0013"/>
+        <cidoc-crm:P11_had_participant rdf:resource="http://data.tastade.org/ontology/actor_0013"/>
         <cidoc-crm:P4_has_time-span rdf:resource="http://data.tastade.org/ontology/timespan_0009"/>
         <cidoc-crm:P7_took_place_at rdf:resource="http://data.tastade.org/ontology/place_0004"/>
         <ontology:addressAsWritten xml:lang="fr">rue de Richebourg 27</ontology:addressAsWritten>
@@ -9310,7 +9487,6 @@ Note, that the class E9 Move inherits the property P7 took place at (witnessed):
     <!-- http://data.tastade.org/ontology/event_0012 -->
 
     <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/event_0012">
-        <rdf:type rdf:resource="http://data.tastade.org/ontology/Observation"/>
         <rdf:type rdf:resource="http://data.tastade.org/ontology/ShareTransfer"/>
         <ontology:hasTransferee rdf:resource="http://data.tastade.org/ontology/actor_0015"/>
         <ontology:hasTransferredShare rdf:resource="http://data.tastade.org/ontology/share_0004"/>
@@ -9335,6 +9511,34 @@ Note, that the class E9 Move inherits the property P7 took place at (witnessed):
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-08-14T09:08:34Z</dc:date>
         <rdfs:label xml:lang="en">event_crossing_31258</rdfs:label>
         <schema:sameAs rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">https://www.slavevoyages.org/voyage/31258</schema:sameAs>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://data.tastade.org/ontology/event_0015 -->
+
+    <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/event_0015">
+        <rdf:type rdf:resource="http://data.tastade.org/ontology/Outfitting"/>
+        <ontology:hasOutfitter rdf:resource="http://data.tastade.org/ontology/actor_0010"/>
+        <ontology:outfittedForCrossing rdf:resource="http://data.tastade.org/ontology/event_0010"/>
+        <ontology:outfittedShip rdf:resource="http://data.tastade.org/ontology/ship_0002"/>
+        <dc:creator>lilianam</dc:creator>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-10-01T09:49:41Z</dc:date>
+        <rdfs:label xml:lang="en">event_outfitting_lePactole</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://data.tastade.org/ontology/event_0023 -->
+
+    <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/event_0023">
+        <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E67_Birth"/>
+        <cidoc-crm:P4_has_time-span rdf:resource="http://data.tastade.org/ontology/timespan_0020"/>
+        <cidoc-crm:P7_took_place_at rdf:resource="http://data.tastade.org/ontology/place_0004"/>
+        <cidoc-crm:P98_brought_into_life rdf:resource="http://data.tastade.org/ontology/actor_0016"/>
+        <dc:creator>lilianam</dc:creator>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-10-04T17:54:02Z</dc:date>
+        <rdfs:label xml:lang="en">event_birth_etienne</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -9407,7 +9611,7 @@ Note, that the class E9 Move inherits the property P7 took place at (witnessed):
         <ontology:hasDebtor rdf:resource="http://data.tastade.org/ontology/actor_0013"/>
         <ontology:hasPrincipalAmount rdf:resource="http://data.tastade.org/ontology/monetary_0001"/>
         <ontology:loanOriginationDate rdf:resource="http://data.tastade.org/ontology/timespan_0009"/>
-        <ontology:securingVoyage rdf:resource="http://data.tastade.org/ontology/event_0010"/>
+        <ontology:securingCrossing rdf:resource="http://data.tastade.org/ontology/event_0010"/>
         <cidoc-crm:P70i_is_documented_in rdf:resource="http://data.tastade.org/ontology/source_0006"/>
         <ontology:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.30</ontology:interestRate>
         <ontology:loanTerms>Additional 1.5% interest per month if voyage lasts more than 15 months.</ontology:loanTerms>
@@ -9448,7 +9652,7 @@ Note, that the class E9 Move inherits the property P7 took place at (witnessed):
     <!-- http://data.tastade.org/ontology/ownership_0001 -->
 
     <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/ownership_0001">
-        <rdf:type rdf:resource="http://data.tastade.org/ontology/Share_Ownership"/>
+        <rdf:type rdf:resource="http://data.tastade.org/ontology/ShareOwnership"/>
         <ontology:hasOwner rdf:resource="http://data.tastade.org/ontology/actor_0001"/>
         <ontology:ownershipPeriod rdf:resource="http://data.tastade.org/ontology/timespan_0001"/>
         <ontology:ownsShare rdf:resource="http://data.tastade.org/ontology/share_0001"/>
@@ -9463,7 +9667,7 @@ Note, that the class E9 Move inherits the property P7 took place at (witnessed):
     <!-- http://data.tastade.org/ontology/ownership_0002 -->
 
     <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/ownership_0002">
-        <rdf:type rdf:resource="http://data.tastade.org/ontology/Share_Ownership"/>
+        <rdf:type rdf:resource="http://data.tastade.org/ontology/ShareOwnership"/>
         <ontology:hasOwner rdf:resource="http://data.tastade.org/ontology/actor_0003"/>
         <ontology:ownershipPeriod rdf:resource="http://data.tastade.org/ontology/timespan_0001"/>
         <ontology:ownsShare rdf:resource="http://data.tastade.org/ontology/share_0002"/>
@@ -9478,7 +9682,7 @@ Note, that the class E9 Move inherits the property P7 took place at (witnessed):
     <!-- http://data.tastade.org/ontology/ownership_0003 -->
 
     <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/ownership_0003">
-        <rdf:type rdf:resource="http://data.tastade.org/ontology/Share_Ownership"/>
+        <rdf:type rdf:resource="http://data.tastade.org/ontology/ShareOwnership"/>
         <ontology:hasOwner rdf:resource="http://data.tastade.org/ontology/actor_0003"/>
         <ontology:ownershipPeriod rdf:resource="http://data.tastade.org/ontology/timespan_0001"/>
         <ontology:ownsShare rdf:resource="http://data.tastade.org/ontology/share_0003"/>
@@ -9520,6 +9724,19 @@ Note, that the class E9 Move inherits the property P7 took place at (witnessed):
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-08-27T14:26:39Z</dc:date>
         <rdfs:label xml:lang="en">place_belgium</rdfs:label>
         <schema:sameAs rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">https://sws.geonames.org/2802361/</schema:sameAs>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://data.tastade.org/ontology/place_0031 -->
+
+    <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/place_0031">
+        <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E53_Place"/>
+        <cidoc-crm:P10_falls_within rdf:resource="http://data.tastade.org/ontology/place_0021"/>
+        <dc:creator>lilianam</dc:creator>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-10-01T17:44:57Z</dc:date>
+        <rdfs:label xml:lang="en">place_antwerp</rdfs:label>
+        <schema:sameAs rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">https://sws.geonames.org/2803138/</schema:sameAs>
     </owl:NamedIndividual>
     
 
@@ -9578,6 +9795,19 @@ Note, that the class E9 Move inherits the property P7 took place at (witnessed):
     
 
 
+    <!-- http://data.tastade.org/ontology/polity_0022 -->
+
+    <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/polity_0022">
+        <rdf:type rdf:resource="http://data.tastade.org/ontology/Polity"/>
+        <ontology:activePeriod rdf:resource="http://data.tastade.org/ontology/timespan_0035"/>
+        <cidoc-crm:P2_has_type rdf:resource="http://data.tastade.org/ontology/term_0034"/>
+        <dc:creator>lilianam</dc:creator>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-10-02T12:09:20Z</dc:date>
+        <rdfs:label xml:lang="en">polity_spanish_netherlands</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://data.tastade.org/ontology/polity_0023 -->
 
     <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/polity_0023">
@@ -9591,11 +9821,35 @@ Note, that the class E9 Move inherits the property P7 took place at (witnessed):
     
 
 
+    <!-- http://data.tastade.org/ontology/polity_0033 -->
+
+    <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/polity_0033">
+        <rdf:type rdf:resource="http://data.tastade.org/ontology/Polity"/>
+        <ontology:activePeriod rdf:resource="http://data.tastade.org/ontology/timespan_0021"/>
+        <cidoc-crm:P2_has_type rdf:resource="http://data.tastade.org/ontology/term_0034"/>
+        <dc:creator>lilianam</dc:creator>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-10-01T17:50:39Z</dc:date>
+        <rdfs:label xml:lang="en">polity_habsburg_netherlands</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://data.tastade.org/ontology/polity_0036 -->
+
+    <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/polity_0036">
+        <rdf:type rdf:resource="http://data.tastade.org/ontology/Polity"/>
+        <dc:creator>lilianam</dc:creator>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-10-02T09:54:50Z</dc:date>
+        <rdfs:label xml:lang="en">polity_antwerp</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://data.tastade.org/ontology/relation_0001 -->
 
     <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/relation_0001">
         <rdf:type rdf:resource="http://data.tastade.org/ontology/FamilyRelationship"/>
-        <ontology:has_relation_type rdf:resource="http://data.tastade.org/ontology/term_0001"/>
+        <ontology:hasRelationType rdf:resource="http://data.tastade.org/ontology/term_0001"/>
         <ontology:relatedFamilyMember rdf:resource="http://data.tastade.org/ontology/actor_0005"/>
         <ontology:relationFrom rdf:resource="http://data.tastade.org/ontology/actor_0004"/>
         <cidoc-crm:P70i_is_documented_in rdf:resource="http://data.tastade.org/ontology/source_0002"/>
@@ -9612,10 +9866,10 @@ Note, that the class E9 Move inherits the property P7 took place at (witnessed):
 
     <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/relation_0002">
         <rdf:type rdf:resource="http://data.tastade.org/ontology/EmploymentRelationship"/>
+        <ontology:hasRelationType rdf:resource="http://data.tastade.org/ontology/term_0026"/>
         <ontology:relatedFamilyMember rdf:resource="http://data.tastade.org/ontology/actor_0007"/>
         <ontology:relationFrom rdf:resource="http://data.tastade.org/ontology/actor_0004"/>
         <cidoc-crm:P70i_is_documented_in rdf:resource="http://data.tastade.org/ontology/source_0002"/>
-        <bibo:locator>t.b.d.</bibo:locator>
         <dc:creator>lilianam</dc:creator>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-06-22T13:50:40Z</dc:date>
         <rdfs:label>relation_antonio-unknownHooftman</rdfs:label>
@@ -9627,7 +9881,7 @@ Note, that the class E9 Move inherits the property P7 took place at (witnessed):
 
     <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/relation_0003">
         <rdf:type rdf:resource="http://data.tastade.org/ontology/MembershipRelationship"/>
-        <ontology:has_relation_type rdf:resource="http://data.tastade.org/ontology/term_0006"/>
+        <ontology:hasRelationType rdf:resource="http://data.tastade.org/ontology/term_0006"/>
         <ontology:relationFrom rdf:resource="http://data.tastade.org/ontology/actor_0004"/>
         <ontology:relationTo rdf:resource="http://data.tastade.org/ontology/actor_0006"/>
         <cidoc-crm:P4_has_time-span rdf:resource="http://data.tastade.org/ontology/timespan_0007"/>
@@ -9647,7 +9901,7 @@ Note, that the class E9 Move inherits the property P7 took place at (witnessed):
         <rdf:type rdf:resource="http://data.tastade.org/ontology/MembershipRelationship"/>
         <ontology:belongsToGroup rdf:resource="http://data.tastade.org/ontology/actor_0011"/>
         <ontology:hasMember rdf:resource="http://data.tastade.org/ontology/actor_0009"/>
-        <ontology:has_relation_type rdf:resource="http://data.tastade.org/ontology/term_0009"/>
+        <ontology:hasRelationType rdf:resource="http://data.tastade.org/ontology/term_0009"/>
         <cidoc-crm:P4_has_time-span rdf:resource="http://data.tastade.org/ontology/timespan_0008"/>
         <dc:creator>lilianam</dc:creator>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-08-17T08:59:51Z</dc:date>
@@ -9659,8 +9913,7 @@ Note, that the class E9 Move inherits the property P7 took place at (witnessed):
     <!-- http://data.tastade.org/ontology/relation_0010 -->
 
     <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/relation_0010">
-        <rdf:type rdf:resource="http://data.tastade.org/ontology/Observation"/>
-        <rdf:type rdf:resource="http://data.tastade.org/ontology/Share_Ownership"/>
+        <rdf:type rdf:resource="http://data.tastade.org/ontology/ShareOwnership"/>
         <ontology:hasOwner rdf:resource="http://data.tastade.org/ontology/actor_0009"/>
         <ontology:ownershipPeriod rdf:resource="http://data.tastade.org/ontology/timespan_0014"/>
         <ontology:ownsShare rdf:resource="http://data.tastade.org/ontology/share_0004"/>
@@ -9674,7 +9927,7 @@ Note, that the class E9 Move inherits the property P7 took place at (witnessed):
     <!-- http://data.tastade.org/ontology/relation_0012 -->
 
     <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/relation_0012">
-        <rdf:type rdf:resource="http://data.tastade.org/ontology/Loan_Ownership"/>
+        <rdf:type rdf:resource="http://data.tastade.org/ontology/LoanOwnership"/>
         <ontology:hasOwner rdf:resource="http://data.tastade.org/ontology/actor_0014"/>
         <ontology:ownershipPeriod rdf:resource="http://data.tastade.org/ontology/timespan_0013"/>
         <ontology:ownsLoan rdf:resource="http://data.tastade.org/ontology/loan_0001"/>
@@ -9689,8 +9942,7 @@ Note, that the class E9 Move inherits the property P7 took place at (witnessed):
     <!-- http://data.tastade.org/ontology/relation_0015 -->
 
     <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/relation_0015">
-        <rdf:type rdf:resource="http://data.tastade.org/ontology/Observation"/>
-        <rdf:type rdf:resource="http://data.tastade.org/ontology/Share_Ownership"/>
+        <rdf:type rdf:resource="http://data.tastade.org/ontology/ShareOwnership"/>
         <ontology:hasOwner rdf:resource="http://data.tastade.org/ontology/actor_0015"/>
         <ontology:ownershipPeriod rdf:resource="http://data.tastade.org/ontology/timespan_0017"/>
         <ontology:ownsShare rdf:resource="http://data.tastade.org/ontology/share_0004"/>
@@ -9715,6 +9967,20 @@ Note, that the class E9 Move inherits the property P7 took place at (witnessed):
     
 
 
+    <!-- http://data.tastade.org/ontology/relation_0021 -->
+
+    <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/relation_0021">
+        <rdf:type rdf:resource="http://data.tastade.org/ontology/MembershipRelationship"/>
+        <ontology:belongsToGroup rdf:resource="http://data.tastade.org/ontology/actor_0010"/>
+        <ontology:hasMember rdf:resource="http://data.tastade.org/ontology/actor_0016"/>
+        <ontology:hasRelationType rdf:resource="http://data.tastade.org/ontology/term_0009"/>
+        <dc:creator>lilianam</dc:creator>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-10-01T10:09:53Z</dc:date>
+        <rdfs:label xml:lang="en">relation_membership_etienne_outfitting</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://data.tastade.org/ontology/relation_0022 -->
 
     <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/relation_0022">
@@ -9725,6 +9991,58 @@ Note, that the class E9 Move inherits the property P7 took place at (witnessed):
         <dc:creator>lilianam</dc:creator>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-08-27T15:02:16Z</dc:date>
         <rdfs:label xml:lang="en">relation_ruling_walhorn_belgium</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://data.tastade.org/ontology/relation_0023 -->
+
+    <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/relation_0023">
+        <rdf:type rdf:resource="http://data.tastade.org/ontology/ShareOwnership"/>
+        <ontology:hasOwner rdf:resource="http://data.tastade.org/ontology/actor_0016"/>
+        <ontology:ownsShare rdf:resource="http://data.tastade.org/ontology/share_0022"/>
+        <dc:creator>lilianam</dc:creator>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-10-01T12:32:37Z</dc:date>
+        <rdfs:label xml:lang="en">relation_ownership_share_crossing34479_etienne</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://data.tastade.org/ontology/relation_0028 -->
+
+    <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/relation_0028">
+        <rdf:type rdf:resource="http://data.tastade.org/ontology/ReligiousAffiliation"/>
+        <ontology:hasMember rdf:resource="http://data.tastade.org/ontology/actor_0004"/>
+        <ontology:isAffiliatedWithReligiousGroup rdf:resource="http://data.tastade.org/ontology/actor_0026"/>
+        <dc:creator>lilianam</dc:creator>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-10-01T15:06:07Z</dc:date>
+        <rdfs:label xml:lang="en">relation_affiliation-antonio-religion</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://data.tastade.org/ontology/relation_0029 -->
+
+    <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/relation_0029">
+        <rdf:type rdf:resource="http://data.tastade.org/ontology/OrganizationalMembership"/>
+        <ontology:belongsToGroup rdf:resource="http://data.tastade.org/ontology/polity_0036"/>
+        <ontology:hasMember rdf:resource="http://data.tastade.org/ontology/actor_0004"/>
+        <ontology:hasRelationType rdf:resource="http://data.tastade.org/ontology/term_0019"/>
+        <dc:creator>lilianam</dc:creator>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-10-01T15:08:39Z</dc:date>
+        <rdfs:label xml:lang="en">relation_membership-antonio-government</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://data.tastade.org/ontology/relation_0032 -->
+
+    <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/relation_0032">
+        <rdf:type rdf:resource="http://data.tastade.org/ontology/PlaceRuling"/>
+        <ontology:hasRuledPlace rdf:resource="http://data.tastade.org/ontology/place_0031"/>
+        <dc:creator>lilianam</dc:creator>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-10-01T17:48:11Z</dc:date>
+        <rdfs:label xml:lang="en">relation_ruling_antwerp_duchy_brabant</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -9874,15 +10192,29 @@ Note, that the class E9 Move inherits the property P7 took place at (witnessed):
     <!-- http://data.tastade.org/ontology/share_0004 -->
 
     <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/share_0004">
-        <rdf:type rdf:resource="http://data.tastade.org/ontology/Observation"/>
         <rdf:type rdf:resource="http://data.tastade.org/ontology/Share"/>
         <ontology:hasIssuer rdf:resource="http://data.tastade.org/ontology/actor_0011"/>
+        <ontology:shareInCrossing rdf:resource="http://data.tastade.org/ontology/event_0014"/>
         <ontology:shareValue rdf:resource="http://data.tastade.org/ontology/monetary_0002"/>
         <cidoc-crm:P70i_is_documented_in rdf:resource="http://data.tastade.org/ontology/source_0006"/>
         <dc:creator>lilianam</dc:creator>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-08-17T09:57:30Z</dc:date>
         <rdfs:comment>Share of 3100 livres tournois in La NÃ©gresse&apos;s 31258 crossing outfitting</rdfs:comment>
         <rdfs:label xml:lang="en">share_crossing31258_3100</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://data.tastade.org/ontology/share_0022 -->
+
+    <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/share_0022">
+        <rdf:type rdf:resource="http://data.tastade.org/ontology/Share"/>
+        <ontology:hasIssuer rdf:resource="http://data.tastade.org/ontology/actor_0010"/>
+        <ontology:shareInCrossing rdf:resource="http://data.tastade.org/ontology/event_0010"/>
+        <ontology1:shareFractionalValue rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2/3</ontology1:shareFractionalValue>
+        <dc:creator>lilianam</dc:creator>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-10-01T10:18:41Z</dc:date>
+        <rdfs:label xml:lang="en">share_crossing34479_23</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -9990,7 +10322,7 @@ Note, that the class E9 Move inherits the property P7 took place at (witnessed):
     <!-- http://data.tastade.org/ontology/term_0001 -->
 
     <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/term_0001">
-        <rdf:type rdf:resource="http://data.tastade.org/ontology/Family_Relationship_Type"/>
+        <rdf:type rdf:resource="http://data.tastade.org/ontology/FamilyRelationshipType"/>
         <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
         <skos:inScheme rdf:resource="http://data.tastade.org/ontology/scheme_0001"/>
         <dc:creator>lilianam</dc:creator>
@@ -10005,7 +10337,7 @@ Note, that the class E9 Move inherits the property P7 took place at (witnessed):
     <!-- http://data.tastade.org/ontology/term_0002 -->
 
     <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/term_0002">
-        <rdf:type rdf:resource="http://data.tastade.org/ontology/Gender_Type"/>
+        <rdf:type rdf:resource="http://data.tastade.org/ontology/GenderType"/>
         <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
         <skos:inScheme rdf:resource="http://data.tastade.org/ontology/scheme_0002"/>
         <dc:creator>lilianam</dc:creator>
@@ -10031,7 +10363,7 @@ Note, that the class E9 Move inherits the property P7 took place at (witnessed):
     <!-- http://data.tastade.org/ontology/term_0004 -->
 
     <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/term_0004">
-        <rdf:type rdf:resource="http://data.tastade.org/ontology/Economic_Sector_Type"/>
+        <rdf:type rdf:resource="http://data.tastade.org/ontology/EconomicSectorType"/>
         <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
         <skos:inScheme rdf:resource="http://data.tastade.org/ontology/scheme_0009"/>
         <dc:creator>lilianam</dc:creator>
@@ -10045,7 +10377,7 @@ Note, that the class E9 Move inherits the property P7 took place at (witnessed):
     <!-- http://data.tastade.org/ontology/term_0005 -->
 
     <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/term_0005">
-        <rdf:type rdf:resource="http://data.tastade.org/ontology/Economic_Sector_Type"/>
+        <rdf:type rdf:resource="http://data.tastade.org/ontology/EconomicSectorType"/>
         <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
         <skos:inScheme rdf:resource="http://data.tastade.org/ontology/scheme_0009"/>
         <dc:creator>lilianam</dc:creator>
@@ -10058,7 +10390,7 @@ Note, that the class E9 Move inherits the property P7 took place at (witnessed):
     <!-- http://data.tastade.org/ontology/term_0006 -->
 
     <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/term_0006">
-        <rdf:type rdf:resource="http://data.tastade.org/ontology/Group_Relationship_Type"/>
+        <rdf:type rdf:resource="http://data.tastade.org/ontology/GroupRelationshipType"/>
         <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
         <dc:creator>lilianam</dc:creator>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-08-12T08:31:34Z</dc:date>
@@ -10070,7 +10402,7 @@ Note, that the class E9 Move inherits the property P7 took place at (witnessed):
     <!-- http://data.tastade.org/ontology/term_0007 -->
 
     <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/term_0007">
-        <rdf:type rdf:resource="http://data.tastade.org/ontology/Identifier_Type"/>
+        <rdf:type rdf:resource="http://data.tastade.org/ontology/IdentifierType"/>
         <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
         <skos:inScheme rdf:resource="http://data.tastade.org/ontology/scheme_0006"/>
         <dc:creator>lilianam</dc:creator>
@@ -10086,7 +10418,7 @@ Note, that the class E9 Move inherits the property P7 took place at (witnessed):
     <!-- http://data.tastade.org/ontology/term_0008 -->
 
     <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/term_0008">
-        <rdf:type rdf:resource="http://data.tastade.org/ontology/Gender_Type"/>
+        <rdf:type rdf:resource="http://data.tastade.org/ontology/GenderType"/>
         <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
         <skos:inScheme rdf:resource="http://data.tastade.org/ontology/scheme_0002"/>
         <dc:creator>lilianam</dc:creator>
@@ -10101,7 +10433,7 @@ Note, that the class E9 Move inherits the property P7 took place at (witnessed):
     <!-- http://data.tastade.org/ontology/term_0009 -->
 
     <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/term_0009">
-        <rdf:type rdf:resource="http://data.tastade.org/ontology/Group_Relationship_Type"/>
+        <rdf:type rdf:resource="http://data.tastade.org/ontology/GroupRelationshipType"/>
         <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
         <skos:inScheme rdf:resource="http://data.tastade.org/ontology/scheme_0005"/>
         <dc:creator>lilianam</dc:creator>
@@ -10114,7 +10446,7 @@ Note, that the class E9 Move inherits the property P7 took place at (witnessed):
     <!-- http://data.tastade.org/ontology/term_0010 -->
 
     <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/term_0010">
-        <rdf:type rdf:resource="http://data.tastade.org/ontology/Polity_Type"/>
+        <rdf:type rdf:resource="http://data.tastade.org/ontology/PolityType"/>
         <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
         <skos:inScheme rdf:resource="http://data.tastade.org/ontology/scheme_0004"/>
         <dc:creator>lilianam</dc:creator>
@@ -10127,7 +10459,7 @@ Note, that the class E9 Move inherits the property P7 took place at (witnessed):
     <!-- http://data.tastade.org/ontology/term_0011 -->
 
     <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/term_0011">
-        <rdf:type rdf:resource="http://data.tastade.org/ontology/Economic_Sector_Type"/>
+        <rdf:type rdf:resource="http://data.tastade.org/ontology/EconomicSectorType"/>
         <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
         <skos:inScheme rdf:resource="http://data.tastade.org/ontology/scheme_0009"/>
         <dc:creator>lilianam</dc:creator>
@@ -10153,7 +10485,7 @@ Note, that the class E9 Move inherits the property P7 took place at (witnessed):
     <!-- http://data.tastade.org/ontology/term_0013 -->
 
     <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/term_0013">
-        <rdf:type rdf:resource="http://data.tastade.org/ontology/Loan_Type"/>
+        <rdf:type rdf:resource="http://data.tastade.org/ontology/LoanType"/>
         <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
         <skos:inScheme rdf:resource="http://data.tastade.org/ontology/scheme_0007"/>
         <dc:creator>lilianam</dc:creator>
@@ -10163,10 +10495,23 @@ Note, that the class E9 Move inherits the property P7 took place at (witnessed):
     
 
 
+    <!-- http://data.tastade.org/ontology/term_0014 -->
+
+    <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/term_0014">
+        <rdf:type rdf:resource="http://data.tastade.org/ontology/GroupType"/>
+        <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+        <skos:inScheme rdf:resource="http://data.tastade.org/ontology/scheme_0003"/>
+        <dc:creator>lilianam</dc:creator>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-10-01T09:43:36Z</dc:date>
+        <rdfs:label xml:lang="en">term_outfitting_partnership</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://data.tastade.org/ontology/term_0015 -->
 
     <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/term_0015">
-        <rdf:type rdf:resource="http://data.tastade.org/ontology/Polity_Type"/>
+        <rdf:type rdf:resource="http://data.tastade.org/ontology/PolityType"/>
         <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
         <skos:inScheme rdf:resource="http://data.tastade.org/ontology/scheme_0004"/>
         <dc:creator>lilianam</dc:creator>
@@ -10179,7 +10524,7 @@ Note, that the class E9 Move inherits the property P7 took place at (witnessed):
     <!-- http://data.tastade.org/ontology/term_0016 -->
 
     <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/term_0016">
-        <rdf:type rdf:resource="http://data.tastade.org/ontology/Polity_Type"/>
+        <rdf:type rdf:resource="http://data.tastade.org/ontology/PolityType"/>
         <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
         <skos:inScheme rdf:resource="http://data.tastade.org/ontology/scheme_0004"/>
         <dc:creator>lilianam</dc:creator>
@@ -10192,7 +10537,7 @@ Note, that the class E9 Move inherits the property P7 took place at (witnessed):
     <!-- http://data.tastade.org/ontology/term_0017 -->
 
     <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/term_0017">
-        <rdf:type rdf:resource="http://data.tastade.org/ontology/Polity_Type"/>
+        <rdf:type rdf:resource="http://data.tastade.org/ontology/PolityType"/>
         <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
         <skos:inScheme rdf:resource="http://data.tastade.org/ontology/scheme_0004"/>
         <dc:creator>lilianam</dc:creator>
@@ -10205,7 +10550,7 @@ Note, that the class E9 Move inherits the property P7 took place at (witnessed):
     <!-- http://data.tastade.org/ontology/term_0018 -->
 
     <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/term_0018">
-        <rdf:type rdf:resource="http://data.tastade.org/ontology/Polity_Type"/>
+        <rdf:type rdf:resource="http://data.tastade.org/ontology/PolityType"/>
         <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
         <skos:inScheme rdf:resource="http://data.tastade.org/ontology/scheme_0003"/>
         <dc:creator>lilianam</dc:creator>
@@ -10213,6 +10558,71 @@ Note, that the class E9 Move inherits the property P7 took place at (witnessed):
         <rdfs:comment xml:lang="en">A territory controlled by a metropole polity, often with distinct legal status.</rdfs:comment>
         <rdfs:label xml:lang="en">term_colony</rdfs:label>
         <schema:sameAs rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">https://www.wikidata.org/wiki/Q133156</schema:sameAs>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://data.tastade.org/ontology/term_0019 -->
+
+    <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/term_0019">
+        <rdf:type rdf:resource="http://data.tastade.org/ontology/GroupRelationshipType"/>
+        <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+        <skos:inScheme rdf:resource="http://data.tastade.org/ontology/scheme_0003"/>
+        <dc:creator>lilianam</dc:creator>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-10-05T13:06:24Z</dc:date>
+        <rdfs:label xml:lang="en">term_alderman</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://data.tastade.org/ontology/term_0025 -->
+
+    <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/term_0025">
+        <rdf:type rdf:resource="http://data.tastade.org/ontology/GroupType"/>
+        <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+        <skos:inScheme rdf:resource="http://data.tastade.org/ontology/scheme_0003"/>
+        <dc:creator>lilianam</dc:creator>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-10-01T13:40:40Z</dc:date>
+        <rdfs:label xml:lang="en">term_merchant-firm</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://data.tastade.org/ontology/term_0026 -->
+
+    <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/term_0026">
+        <rdf:type rdf:resource="http://data.tastade.org/ontology/FamilyRelationshipType"/>
+        <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+        <skos:inScheme rdf:resource="http://data.tastade.org/ontology/scheme_0001"/>
+        <dc:creator>lilianam</dc:creator>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-10-05T13:29:36Z</dc:date>
+        <rdfs:label xml:lang="en">term_hasParent-in-law</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://data.tastade.org/ontology/term_0027 -->
+
+    <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/term_0027">
+        <rdf:type rdf:resource="http://data.tastade.org/ontology/GroupType"/>
+        <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+        <skos:inScheme rdf:resource="http://data.tastade.org/ontology/scheme_0003"/>
+        <dc:creator>lilianam</dc:creator>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-10-01T14:49:33Z</dc:date>
+        <rdfs:label xml:lang="en">term_group_type_religious</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://data.tastade.org/ontology/term_0034 -->
+
+    <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/term_0034">
+        <rdf:type rdf:resource="http://data.tastade.org/ontology/PolityType"/>
+        <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+        <skos:inScheme rdf:resource="http://data.tastade.org/ontology/scheme_0004"/>
+        <dc:creator>lilianam</dc:creator>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-10-01T18:03:05Z</dc:date>
+        <rdfs:label xml:lang="en">term_composite_monarchy</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -10452,6 +10862,44 @@ Note, that the class E9 Move inherits the property P7 took place at (witnessed):
     
 
 
+    <!-- http://data.tastade.org/ontology/timespan_0020 -->
+
+    <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/timespan_0020">
+        <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E52_Time-Span"/>
+        <cidoc-crm:P82a_begin_of_the_begin rdf:datatype="http://www.w3.org/2001/XMLSchema#date">1766-03-23</cidoc-crm:P82a_begin_of_the_begin>
+        <dc:creator>lilianam</dc:creator>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-10-01T09:58:22Z</dc:date>
+        <rdfs:label xml:lang="en">timespan_birth_actor_etienne</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://data.tastade.org/ontology/timespan_0021 -->
+
+    <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/timespan_0021">
+        <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E52_Time-Span"/>
+        <cidoc-crm:P82a_begin_of_the_begin rdf:datatype="http://www.w3.org/2001/XMLSchema#date">1482-03-27</cidoc-crm:P82a_begin_of_the_begin>
+        <cidoc-crm:P82b_end_of_the_end rdf:datatype="http://www.w3.org/2001/XMLSchema#date">1555-10-25</cidoc-crm:P82b_end_of_the_end>
+        <dc:creator>lilianam</dc:creator>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-10-02T12:06:23Z</dc:date>
+        <rdfs:label xml:lang="en">timespan_habsburg_netherlands</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://data.tastade.org/ontology/timespan_0024 -->
+
+    <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/timespan_0024">
+        <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E52_Time-Span"/>
+        <cidoc-crm:P82a_begin_of_the_begin rdf:datatype="http://www.w3.org/2001/XMLSchema#date">1825-09-01</cidoc-crm:P82a_begin_of_the_begin>
+        <cidoc-crm:P82b_end_of_the_end rdf:datatype="http://www.w3.org/2001/XMLSchema#date">1826-05-03</cidoc-crm:P82b_end_of_the_end>
+        <dc:creator>lilianam</dc:creator>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-10-01T12:41:01Z</dc:date>
+        <rdfs:label xml:lang="en">timespan_crossing-34479</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://data.tastade.org/ontology/timespan_0026 -->
 
     <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/timespan_0026">
@@ -10461,6 +10909,19 @@ Note, that the class E9 Move inherits the property P7 took place at (witnessed):
         <dc:creator>lilianam</dc:creator>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-08-28T11:41:01Z</dc:date>
         <rdfs:label xml:lang="en">timespan_belgium_kingdom</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://data.tastade.org/ontology/timespan_0035 -->
+
+    <owl:NamedIndividual rdf:about="http://data.tastade.org/ontology/timespan_0035">
+        <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E52_Time-Span"/>
+        <cidoc-crm:P82a_begin_of_the_begin rdf:datatype="http://www.w3.org/2001/XMLSchema#date">1556-01-16</cidoc-crm:P82a_begin_of_the_begin>
+        <cidoc-crm:P82b_end_of_the_end rdf:datatype="http://www.w3.org/2001/XMLSchema#date">1714-09-07</cidoc-crm:P82b_end_of_the_end>
+        <dc:creator>lilianam</dc:creator>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-10-01T18:05:14Z</dc:date>
+        <rdfs:label xml:lang="en">timespan_spanish-netherlands</rdfs:label>
     </owl:NamedIndividual>
 </rdf:RDF>
 
